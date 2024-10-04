@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<!-- saved from url=(0054)https://chrisboligprojects.pythonanywhere.com/gpuEarth -->
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>points Earth</title>
+    <style>
+        body {
+            margin: 0;
+            background-color: black;
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 20px;
+            background-color: #333;
+        }
+        header img {
+            height: 50px;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+        .features {
+            display: flex;
+            gap: 10px;
+        }
+        .features button {
+            background-color: #555;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+        .features button:hover {
+            background-color: #777;
+        }
+    </style>
+    <script type="importmap">
+      {
+        "imports": {
+            "three": "https://cdn.jsdelivr.net/npm/three@0.161/build/three.module.js",
+            "jsm/": "https://cdn.jsdelivr.net/npm/three@0.161/examples/jsm/"
+        }
+      }
+    </script>
+</head>
+<body>
+    <header>
+      <div>
+        <img src="logo.png" alt="Logo" style="height: 50px;">
+      </div>
+        <h1>Explorers</h1>
+        <div class="features">
+            <button>Game</button>
+            <button>Quiz</button>
+            <button>Junior Scientist</button>
+            <button>3D Classroom</button>
+        </div>
+    </header>
+    <script type="module" src="index.js"></script>
+</body>
+</html>
