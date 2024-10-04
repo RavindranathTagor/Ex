@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Quiz</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+            background-color: #f0f0f0;
+        }
+        .topic {
+            cursor: pointer;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            margin: 10px;
+            display: inline-block;
+        }
+        .question-container {
+            display: none;
+            margin-top: 20px;
+        }
+        .doll {
+            position: absolute;
+            width: 100px; /* Set the size of the doll */
+            bottom: 10%;
+            left: 50%;
+            transform: translateX(-50%);
+            display: none; /* Hide it initially */
+        }
+        @keyframes walk {
+            0% { left: 50%; }
+            100% { left: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+<h1>Interactive Quiz</h1>
+
+<div>
+    <div class="topic" onclick="startQuiz('topic1')">Topic 1: Chemistry</div>
+    <div class="topic" onclick="startQuiz('topic2')">Topic 2: Biology</div>
+    <div class="topic" onclick="startQuiz('topic3')">Topic 3: Geography</div>
+</div>
+
+<div id="question-container" class="question-container">
+    <h2 id="quiz-title"></h2>
+    <div id="question"></div>
+    <div id="options"></div>
+    <div id="feedback" style="margin-top: 20px;"></div>
+</div>
+
+<img id="doll" class="doll" src="logo.png" alt="Doll" />
+
+<script>
+    let currentQuestion = 0;
+    const quizData = {
+        topic1: {
+            title: "Chemistry Quiz",
+            questions: [
+                {
+                    question: "What is the chemical formula of water?",
+                    options: ["H2O", "O2", "CO2", "NaCl"],
+                    answer: 0,
+                    explanation: "The chemical formula of water is H2O, consisting of two hydrogen atoms and one oxygen atom."
+                },
+                // Add more questions as needed
+            ]
+        },
+        // Add other topics and questions similarly
+    };
+
+    function startQuiz(topic) {
+        currentQuestion = 0;
+        const data = quizData[topic];
+        document.getElementById("quiz-title").innerText = data.title;
+        document.getElementById("question-container").style.display = "block";
+        showQuestion(data.questions[currentQuestion]);
+    }
+
+    function showQuestion(questionData) {
+        document.getElementById("question").innerText = questionData.question;
+        const optionsContainer = document.getElementById("options");
+        optionsContainer.innerHTML = '';
+        questionData.options.forEach((option, index) => {
+            const button = document.createElement("button");
+            button.innerText = option;
+            button.onclick = () => checkAnswer(index, questionData);
+            optionsContainer.appendChild(button);
+        });
+    }
+
+    function checkAnswer(selected, questionData) {
+        const feedback = document.getElementById("feedback");
+        if (selected === questionData.answer) {
+            feedback.innerText = "Correct!";
+            showDollAndExplain(questionData.explanation);
+        } else {
+            feedback.innerText = "Wrong! Try Again.";
+        }
+    }
+
+    function showDollAndExplain(explanation) {
+        const doll = document.getElementById("doll");
+        doll.style.display = "block"; // Show the doll
+        doll.style.animation = "none"; // Reset animation
+        doll.style.left = "50%"; // Start position
+        doll.offsetHeight; // Trigger reflow
+        doll.style.animation = "walk 4s forwards"; // Start walking animation
+
+        setTimeout(() => {
+            alert(explanation); // Show explanation in alert after doll stops
+            doll.style.display = "none"; // Hide the doll after explanation
+        }, 4000); // Match this with the animation duration
+    }
+</script>
+
+</body>
+</html>
