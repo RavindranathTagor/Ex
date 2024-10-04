@@ -1,114 +1,112 @@
-// creating an array and passing the number, questions, options, and answers
 let questions = [
-    {
+  {
     numb: 1,
-    question: "Which of the following is correct about features of JavaScript?",
-    answer: "All of the above.",
+    question: "Which is the largest ocean in the world?",
+    answer: "Pacific Ocean",
     options: [
-      "JavaScript is a lightweight, interpreted programming language",
-      "JavaScript is designed for creating network-centric applications",
-      "JavaScript is complementary to and integrated with Java.",
-      "All of the above."
+      "Indian Ocean",
+      "Atlantic Ocean",
+      "Pacific Ocean",
+      "Southern Ocean"
     ]
   },
   {
     numb: 2,
-    question: "Which of the following function of String object returns the characters in a string between two indexes into the string?",
-    answer: "substring()",
+    question: "Which continent is known as the 'Dark Continent'?",
+    answer: "Africa",
     options: [
-      "slice()",
-      "split()",
-      "substr()",
-      "substring()"
+      "Asia",
+      "Africa",
+      "South America",
+      "Australia"
     ]
   },
   {
     numb: 3,
-    question: "Which of the following function of String object creates an HTML anchor that is used as a hypertext target?",
-    answer: "anchor()",
+    question: "What is the longest river in the world?",
+    answer: "Nile River",
     options: [
-      "anchor()",
-      "link()",
-      "blink()",
-      "big()"
+      "Amazon River",
+      "Yangtze River",
+      "Mississippi River",
+      "Nile River"
     ]
   },
   {
     numb: 4,
-    question: "Which of the following function of Array object represents the source code of an object?",
-    answer: "toSource()",
+    question: "Which ocean is the Bermuda Triangle located in?",
+    answer: "Atlantic Ocean",
     options: [
-      "toSource()",
-      "splice()",
-      "toString()",
-      "unshift()"
+      "Indian Ocean",
+      "Pacific Ocean",
+      "Atlantic Ocean",
+      "Southern Ocean"
     ]
   },
   {
     numb: 5,
-    question: "Which built-in method returns the calling string value converted to lower case?",
-    answer: "toLowerCase()",
+    question: "Which is the smallest continent by land area?",
+    answer: "Australia",
     options: [
-      "toLowerCase()",
-      "toLower()",
-      "changeCase(case)",
-      "None of the above."
+      "Europe",
+      "Australia",
+      "Antarctica",
+      "South America"
     ]
   },
-  // {
-  //   numb: 6,
-  //   question: "What does HTML stand for?",
-  //   answer: "Hyper Text Markup Language",
-  //   options: [
-  //     "Hyper Text Preprocessor",
-  //     "Hyper Text Markup Language",
-  //     "Hyper Text Multiple Language",
-  //     "Hyper Tool Multi Language"
-  //   ]
-  // },
-  // {
-  //   numb: 7,
-  //   question: "What does HTML stand for?",
-  //   answer: "Hyper Text Markup Language",
-  //   options: [
-  //     "Hyper Text Preprocessor",
-  //     "Hyper Text Markup Language",
-  //     "Hyper Text Multiple Language",
-  //     "Hyper Tool Multi Language"
-  //   ]
-  // },
-  // {
-  //   numb: 8,
-  //   question: "What does HTML stand for?",
-  //   answer: "Hyper Text Markup Language",
-  //   options: [
-  //     "Hyper Text Preprocessor",
-  //     "Hyper Text Markup Language",
-  //     "Hyper Text Multiple Language",
-  //     "Hyper Tool Multi Language"
-  //   ]
-  // },
-  // {
-  //   numb: 9,
-  //   question: "What does HTML stand for?",
-  //   answer: "Hyper Text Markup Language",
-  //   options: [
-  //     "Hyper Text Preprocessor",
-  //     "Hyper Text Markup Language",
-  //     "Hyper Text Multiple Language",
-  //     "Hyper Tool Multi Language"
-  //   ]
-  // },
-  // {
-  //   numb: 10,
-  //   question: "What does HTML stand for?",
-  //   answer: "Hyper Text Markup Language",
-  //   options: [
-  //     "Hyper Text Preprocessor",
-  //     "Hyper Text Markup Language",
-  //     "Hyper Text Multiple Language",
-  //     "Hyper Tool Multi Language"
-  //   ]
-  // },
-
+  {
+    numb: 6,
+    question: "Which country has the largest number of islands?",
+    answer: "Sweden",
+    options: [
+      "Indonesia",
+      "Canada",
+      "Sweden",
+      "Philippines"
+    ]
+  },
+  {
+    numb: 7,
+    question: "Which desert is the largest in the world?",
+    answer: "Sahara Desert",
+    options: [
+      "Gobi Desert",
+      "Arabian Desert",
+      "Sahara Desert",
+      "Kalahari Desert"
+    ]
+  },
+  {
+    numb: 8,
+    question: "Which ocean is the deepest?",
+    answer: "Pacific Ocean",
+    options: [
+      "Indian Ocean",
+      "Pacific Ocean",
+      "Atlantic Ocean",
+      "Arctic Ocean"
+    ]
+  },
+  {
+    numb: 9,
+    question: "Which country is the largest by land area?",
+    answer: "Russia",
+    options: [
+      "Canada",
+      "United States",
+      "China",
+      "Russia"
+    ]
+  },
+  {
+    numb: 10,
+    question: "Which mountain range is the longest in the world?",
+    answer: "Andes",
+    options: [
+      "Rocky Mountains",
+      "Himalayas",
+      "Andes",
+      "Alps"
+    ]
+  }
 ];
