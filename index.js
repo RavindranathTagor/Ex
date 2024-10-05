@@ -101,3 +101,14 @@ window.addEventListener('resize', function () {
   camera.updateProjectionMatrix();
   renderer.setSize(window.innerWidth, window.innerHeight);
 }, false);
+
+// Add event listener for quiz button
+document.getElementById('quizButton').addEventListener('click', function() {
+    window.location.href = 'quiz1.html';
+});
+
+// Add event listener for game button
+document.getElementById('gameButton').addEventListener('click', function() {
+  window.location.href = 'game.html';
+});
+// https://discourse.threejs.org/t/earth-point-vertex-elevation/62689
