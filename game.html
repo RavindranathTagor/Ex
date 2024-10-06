@@ -3,24 +3,417 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>2D Ocean Game</title>
-    <link rel="stylesheet" href="cssg.css">
+    <title>Ocean Cleaning Game</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f8ff;
+        }
+        #gameContainer {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        canvas {
+            display: block;
+            margin: 20px auto;
+            background-color: #87CEEB; /* Sky blue fallback color */
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            font-size: 18px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+
+        /* Popup Modal Styles for Start Cleaning Mission */
+        #overlay {
+            display: block;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 9;
+        }
+
+        #storyContainer {
+            display: block;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(255, 255, 255, 0.95);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            z-index: 10;
+            width: 50%;
+        }
+        h1, h2 {
+            color: #1e90ff;
+        }
+
+        /* Game Over Modal Styles */
+        #gameOverModal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            z-index: 10;
+        }
+    </style>
 </head>
 <body>
-    <div id="game-container">
-        <div id="score">Score: <span id="score-value">0</span></div>
-        <canvas id="gameCanvas"></canvas>
-        
-        <div id="game-over" class="hidden">
-            <h2>Game Over</h2>
-            <p>Your final score: <span id="final-score"></span></p>
-            <button id="restart-button">Restart</button>
+    <div id="gameContainer">
+        <!-- Start Cleaning Mission Modal -->
+        <div id="overlay"></div>
+        <div id="storyContainer">
+            <h1>Ocean Cleaning Mission</h1>
+            <p>Welcome to the Ocean Cleaning Game, inspired by NASA's PACE (Plankton, Aerosol, Cloud, ocean Ecosystem) mission!</p>
+            <p>PACE helps us understand the health of our oceans by observing tiny organisms called phytoplankton and tracking pollution. These microscopic plants are crucial for marine life and play a significant role in Earth's carbon cycle.</p>
+            <p>In this game, you'll help clean the ocean by collecting bubbles (representing healthy plankton) while avoiding plastic waste. Your mission is to maintain a healthy ocean ecosystem!</p>
+            <button id="startBtn">Start Cleaning Mission</button>
         </div>
-        <div id="start-screen">
-            <h1>Welcome to the 2D Ocean Game!</h1>
-            <button id="start-button">Start Game</button>
+
+        <!-- Game Canvas -->
+        <canvas id="canvas1" style="display: none;"></canvas>
+
+        <!-- Game Over Modal -->
+        <div id="gameOverModal">
+            <h2>Mission Complete!</h2>
+            <p id="finalScore"></p>
+            <p id="cleaningImpact"></p>
+            <p id="motivation"></p>
+            <button id="restartBtn">Start New Mission</button>
         </div>
     </div>
-    <script src="scriptg.js"></script>
+    
+    <script>
+        // Game variables
+        const canvas = document.getElementById('canvas1');
+        const ctx = canvas.getContext('2d');
+        canvas.width = 1400;
+        canvas.height = 600;
+        let score = 0;
+        let gameFrame = 0;
+        let gameOverFlag = false;
+        ctx.font = '50px Georgia';
+
+        const overlay = document.getElementById('overlay');
+        const gameOverModal = document.getElementById('gameOverModal');
+        const storyContainer = document.getElementById('storyContainer');
+
+        // Image loading
+        const images = {
+            background: 'https://i.ibb.co/TrjMvN5/Whats-App-Image-2024-10-05-at-04-28-46-7eeee731.jpg',
+            playerLeft: 'https://i.ibb.co/TBybGk5/fish-swim-left.png',
+            playerRight: 'https://i.ibb.co/SQpfB1v/fish-swim-right.png',
+            plastic: 'https://i.ibb.co/Df9fmg8/plastic-small.png',
+            bubble: 'https://i.ibb.co/ZX3thkw/pop2.png'
+        };
+
+        const loadedImages = {};
+        let imagesLoaded = 0;
+        const totalImages = Object.keys(images).length;
+
+        function loadImages(callback) {
+            Object.keys(images).forEach(key => {
+                const img = new Image();
+                img.onload = () => {
+                    loadedImages[key] = img;
+                    imagesLoaded++;
+                    if (imagesLoaded === totalImages) {
+                        callback();
+                    }
+                };
+                img.onerror = () => {
+                    console.error(`Failed to load image: ${key}`);
+                    imagesLoaded++;
+                    if (imagesLoaded === totalImages) {
+                        callback();
+                    }
+                };
+                img.src = images[key];
+            });
+        }
+
+        // Mouse interactivity
+        let canvasPosition = canvas.getBoundingClientRect();
+        const mouse = {
+            x: canvas.width / 2,
+            y: canvas.height / 2,
+            click: false
+        };
+
+        canvas.addEventListener('mousemove', function (e) {
+            mouse.click = true;
+            mouse.x = e.x - canvasPosition.left;
+            mouse.y = e.y - canvasPosition.top;
+        });
+        window.addEventListener('mouseup', function () {
+            mouse.click = false;
+        });
+
+        window.addEventListener("deviceorientation", onOrientationChange, false);
+        function onOrientationChange(event) {
+            mouse.x = canvas.width / 2 + (canvas.width * 2 * event.beta / 180);
+            mouse.y = canvas.height / 2 - (canvas.height * 2 * event.gamma / 90);
+        }
+       // Player
+       class Player {
+            constructor() {
+                this.x = canvas.width;
+                this.y = canvas.height / 2;
+                this.radius = 50;
+                this.angle = 0;
+                this.frameX = 0;
+                this.frameY = 0;
+                this.frame = 0;
+                this.spriteWidth = 160;
+                this.spriteHeight = 105;
+            }
+            update() {
+                const dx = this.x - mouse.x;
+                const dy = this.y - mouse.y;
+                if (mouse.x != this.x) {
+                    this.x -= dx / 20;
+                    this.moving = true;
+                }
+                if (mouse.y != this.y) {
+                    this.y -= dy / 20;
+                    this.moving = true;
+                }
+                if (this.x < 0) this.x = 0;
+                if (this.x > canvas.width) this.x = canvas.width;
+                if (this.y < 50) this.y = 50;
+                if (this.y > canvas.height) this.y = canvas.height;
+                let theta = Math.atan2(dy, dx);
+                this.angle = theta;
+            }
+            draw() {
+                if (gameFrame % 10 == 0) {
+                    this.frame++;
+                    if (this.frame >= 12) this.frame = 0;
+                    if (this.frame == 3 || this.frame == 7 || this.frame == 11) {
+                        this.frameX = 0;
+                    } else this.frameX++;
+                    if (this.frame < 3) {
+                        this.frameY = 0;
+                    } else if (this.frame < 7) {
+                        this.frameY = 1;
+                    } else if (this.frame < 11) {
+                        this.frameY = 2;
+                    } else this.frameY = 0;
+                }
+
+                ctx.fillStyle = 'black';
+                ctx.save();
+                ctx.translate(this.x, this.y);
+                ctx.rotate(this.angle);
+                if (this.x >= mouse.x) {
+                    if (loadedImages.playerLeft) {
+                        ctx.drawImage(loadedImages.playerLeft, this.frameX * this.spriteWidth, this.frameY * this.spriteHeight, this.spriteWidth, this.spriteHeight, 0 - 60, 0 - 45, this.spriteWidth * 0.8, this.spriteHeight * 0.8);
+                    } else {
+                        ctx.fillStyle = 'blue';
+                        ctx.beginPath();
+                        ctx.arc(0, 0, 30, 0, Math.PI * 2);
+                        ctx.fill();
+                    }
+                } else {
+                    if (loadedImages.playerRight) {
+                        ctx.drawImage(loadedImages.playerRight, this.frameX * this.spriteWidth, this.frameY * this.spriteHeight, this.spriteWidth, this.spriteHeight, 0 - 60, 0 - 45, this.spriteWidth * 0.8, this.spriteHeight * 0.8);
+                    } else {
+                        ctx.fillStyle = 'blue';
+                        ctx.beginPath();
+                        ctx.arc(0, 0, 30, 0, Math.PI * 2);
+                        ctx.fill();
+                    }
+                }
+                ctx.restore();
+            }
+        }
+        const player = new Player();
+
+        // Plastic (Obstacle) materials
+        const plasticArray = [];
+
+        class Plastic {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = 0 - 50 - Math.random() * canvas.height / 2;
+                this.radius = 50;
+                this.speed = Math.random() * 1 + 1;
+                this.distance;
+            }
+            update() {
+                if (!gameOverFlag) {
+                    this.y += this.speed;
+                    const dx = this.x - player.x;
+                    const dy = this.y - player.y;
+                    this.distance = Math.sqrt(dx * dx + dy * dy);
+                }
+            }
+            draw() {
+                if (loadedImages.plastic) {
+                    ctx.drawImage(loadedImages.plastic, this.x - 50, this.y - 50, 100, 100);
+                } else {
+                    ctx.fillStyle = 'red';
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, 30, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+            }
+        }
+
+        function handlePlastic() {
+            for (let i = 0; i < plasticArray.length; i++) {
+                plasticArray[i].update();
+                plasticArray[i].draw();
+                if (plasticArray[i].distance < plasticArray[i].radius + player.radius) {
+                    gameOver();
+                    return;
+                }
+            }
+            if (gameFrame % 200 == 0 && !gameOverFlag) {
+                plasticArray.push(new Plastic());
+            }
+        }
+
+        // Bubble (Collectible) materials
+        const bubblesArray = [];
+
+        class Bubble {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = 0 - 50 - Math.random() * canvas.height / 2;
+                this.radius = 50;
+                this.speed = Math.random() * -5 + -1;
+                this.distance;
+                this.frameX = 0;
+                this.spriteWidth = 91;
+                this.spriteHeight = 91;
+                this.pop = false;
+                this.counted = false;
+            }
+            update() {
+                this.y -= this.speed;
+                const dx = this.x - player.x;
+                const dy = this.y - player.y;
+                this.distance = Math.sqrt(dx * dx + dy * dy);
+            }
+            draw() {
+                if (loadedImages.bubble) {
+                    ctx.drawImage(loadedImages.bubble, this.frameX * this.spriteWidth, 0, this.spriteWidth, this.spriteHeight, this.x - 68, this.y - 68, this.spriteWidth * 1.5, this.spriteHeight * 1.5);
+                } else {
+                    ctx.fillStyle = 'green';
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, 30, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+            }
+        }
+
+        function handleBubbles() {
+            for (let i = 0; i < bubblesArray.length; i++) {
+                if (bubblesArray[i].y > canvas.height * 2) {
+                    bubblesArray.splice(i, 1);
+                }
+            }
+            for (let i = 0; i < bubblesArray.length; i++) {
+                if (bubblesArray[i].distance < bubblesArray[i].radius + player.radius) {
+                    popAndRemove(i);
+                }
+            }
+            for (let i = 0; i < bubblesArray.length; i++) {
+                bubblesArray[i].update();
+                bubblesArray[i].draw();
+            }
+            if (gameFrame % 50 == 0) {
+                bubblesArray.push(new Bubble());
+            }
+        }
+
+        function popAndRemove(i) {
+            if (bubblesArray[i]) {
+                if (!bubblesArray[i].counted) score++;
+                bubblesArray[i].counted = true;
+                bubblesArray[i].frameX++;
+                if (bubblesArray[i].frameX > 7) bubblesArray[i].pop = true;
+                if (bubblesArray[i].pop) bubblesArray.splice(i, 1);
+                requestAnimationFrame(popAndRemove);
+            }
+        }
+
+     // Game Over Function
+function gameOver() {
+    gameOverFlag = true;
+    overlay.style.display = 'block'; // Show the overlay when the game is over
+    gameOverModal.style.display = 'block'; // Show the game over modal
+    document.getElementById('finalScore').innerText = 'Final Score: ' + score;
+    document.getElementById('cleaningImpact').innerText = 'You have cleaned ' + score + ' units of waste!';
+    document.getElementById('motivation').innerText = 'Great job! Let\'s make the world cleaner!';
+}
+
+// Restart Game
+function restartGame() {
+    score = 0; // Reset the score
+    gameOverFlag = false; // Reset the game over flag
+    plasticArray.length = 0; // Clear plastic obstacles
+    bubblesArray.length = 0; // Clear bubble array (corrected from bubbleArray)
+    gameFrame = 0; // Reset the game frame counter
+    overlay.style.display = 'none'; // Hide the overlay
+    gameOverModal.style.display = 'none'; // Hide the modal
+    canvas.style.display = 'block'; // Show the game canvas
+    requestAnimationFrame(animate); // Restart the animation loop
+}
+
+// Animation Loop
+function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.drawImage(loadedImages.background, 0, 0, canvas.width, canvas.height);
+    handleBubbles();
+    handlePlastic();
+    player.update();
+    player.draw();
+    ctx.fillStyle = 'black';
+    ctx.fillText('Score: ' + score, 10, 50);
+    gameFrame++;
+    
+    if (!gameOverFlag) {
+        requestAnimationFrame(animate); // Keep the loop running while the game is not over
+    } else {
+        gameOver(); // Call gameOver if game is finished
+    }
+}
+ // Start Game
+ document.getElementById('startBtn').addEventListener('click', function () {
+            storyContainer.style.display = 'none'; // Hide the pop-up
+            overlay.style.display = 'none'; // Hide the overlay
+            canvas.style.display = 'block'; // Show the game canvas
+            loadImages(animate); // Start the game after images are loaded
+        });
+
+
+// Restart Mission
+document.getElementById('restartBtn').addEventListener('click', restartGame);
+
+
+    </script>
 </body>
 </html>
