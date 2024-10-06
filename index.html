@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<!-- saved from url=(0054)https://chrisboligprojects.pythonanywhere.com/gpuEarth -->
 <html lang="en">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -13,41 +12,48 @@
             color: white;
             font-family: Arial, sans-serif;
         }
+        
         header {
             display: flex;
             align-items: center;
             justify-content: space-between;
             padding: 10px 20px;
-            background-color: #333;
-            
+            background: linear-gradient(to right, #ffffff, #e0e0e0);
+            color: black;
         }
-        /* header img {
-            height: 50px;
-        } */
-        header h1 {
-            margin: -13px 636px 0px 0px;
-            font-size: 30px;
-            /* float: right; */
-            
-        }
-        .features {
-            display: flex;
-            gap: 10px;
-        }
-        .features button {
-            background-color: #555;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            cursor: pointer;
-        }
-        .features button:hover {
-            background-color: #777;
-        }
-        .logo img{
+        
+        .logo img {
             height: 65px;
         }
+        
+        header h1 {
+            font-size: 36px; /* Increased font size for title */
+            margin-left: -451px;
+            color: black;
+            margin-top: 8px;
+        }
+        
+        .features {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .features button {
+            background-color: #bcdae6;
+            color: rgb(0, 0, 0);
+            border: none;
+            padding: 10px 30px; /* Increased padding */
+            cursor: pointer;
+            border-radius: 20px;
+            font-size: 16px; /* Increased font size */
+            transition: background-color 0.3s ease;
+        }
+        
+        .features button:hover {
+            background-color: #80e5dd;
+        }
     </style>
+    
     <script type="importmap">
       {
         "imports": {
@@ -59,9 +65,9 @@
 </head>
 <body>
     <header>
-      <div class="logo">
-        <img src="logo1.png" alt="Logo">
-      </div>
+        <div class="logo">
+            <img src="logo1.png" alt="Logo">
+        </div>
         <h1>Explorers</h1>
         <div class="features">
             <button id="gameButton">Game</button>
@@ -70,6 +76,7 @@
             <button>3D Classroom</button>
         </div>
     </header>
+    
     <script type="module" src="index.js"></script>
 </body>
 </html>

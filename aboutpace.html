@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Web Page</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            display: flex;
+            align-items: center;
+            padding: -10px;
+            background-color:white;
+            color: white;
+            height: 88px;
+        }
+
+        .logo {
+            width: 100px;
+            margin-right: 20px;
+        }
+
+        .site-name {
+            font-size: 33px;
+            margin: 0;
+            display: inline-block;
+        }
+
+        .green-box {
+            background-color:white;
+            color: white;
+            padding: 5px;
+            text-align: center;
+            margin: 20px;
+            border-radius: 10px;
+        }
+
+        .featured-image {
+            text-align: center;
+            margin: 20px;
+            position: relative;
+        }
+
+        .featured-img {
+            width: 100%;
+            max-width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .featured-description {
+            position: absolute;
+            top: 73%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: rgb(255, 255, 255);
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            width: 87%;
+        }
+
+        .cards {
+            display: flex;
+            justify-content: space-around;
+            margin: 20px;
+        }
+
+        .card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            height: 400px;
+            /* Increased height from 300px to 400px */
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            text-align: center;
+            transition: transform 0.2s;
+            cursor: pointer;
+            flex: 1;
+            margin: 0 10px;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+        }
+
+        .card-img {
+            width: 100%;
+            border-radius: 5px;
+        }
+
+        .know-more-title {
+            font-size:30px;
+            font-weight: bold;
+            color: #308a30;
+            /* Green color */
+            margin: 10px 0 5px;
+            text-align: center;
+            /* Centering the title */
+            font-family: var(--playFairDisplay);
+        }
+
+        .know-more-content {
+            font-size: 0.9em;
+            color: #333;
+            /* Darker shade for contrast */
+            margin: 10px 0;
+        }
+
+        .info {
+            margin: 20px;
+            display: flex;
+            align-items: center;
+        }
+
+        .info-paragraph {
+            margin: 10px 0;
+            background-color: #b3c8ec;
+            padding: 10px;
+            border-radius: 5px;
+            flex: 1;
+        }
+
+        .info-img {
+            width: 60px;
+            height: 60px;
+            margin-right: 10px;
+            border-radius: 5px;
+        }
+
+        .additional-images {
+            display: flex;
+            justify-content: space-around;
+            margin: 20px;
+        }
+
+        .additional-img {
+            width: 30%;
+            border-radius: 5px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+
+        .site-name1 {
+            margin-top: 20px;
+            margin-left: 300px;
+        }
+        h1{
+            color: black;
+            font-size: 30px;
+            font-family: var(--playFairDisplay);
+        }
+        h2{
+            color: black;
+            font-family: var(--playFairDisplay);
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <img src="logo.png" alt="Logo" class="logo">
+        <h1 class="site-name">Explorers</h1>
+        <div class="green-box">
+            <h2 class="site-name1">Know more about PACE</h2>
+        </div>
+    </header>
+
+    <main>
+        <section class="featured-image">
+            <img src="pace.jpg" alt="Featured" class="featured-img">
+            <div class="featured-description">
+                <h3>PACE (Phytoplankton, Aquatic, and Coastal Ecosystem)</h3>
+                <p>An innovative monitoring system designed to study and understand ocean ecosystems. It focuses on the
+                    role of phytoplankton in carbon cycling, which is essential for maintaining ocean health and
+                    regulating climate. PACE utilizes advanced satellite technology to gather critical data on
+                    phytoplankton distribution, health, and productivity across vast ocean regions. By analyzing this
+                    information, scientists can better understand marine ecosystems and their response to environmental
+                    changes.</p>
+            </div>
+        </section>
+
+        <h1 class="know-more-title">Know More</h1>
+        <section class="cards">
+            <div class="card" onclick="showAlert('Card 1 Information')">
+                <img src="plo64otg.png"
+                    alt="Card 1" class="card-img">
+                <h3>Ocean Health Monitoring</h3>
+                <p class="know-more-content">Explore the latest technologies in ocean health monitoring and their
+                    impacts on marine life.</p>
+            </div>
+            <div class="card" onclick="showAlert('Card 2 Information')">
+                <img src="https://cff2.earth.com/uploads/2020/04/23140044/shutterstock_206421328-1024x655.jpg"
+                    alt="Card 2" class="card-img">
+                <h3>Marine Biodiversity</h3>
+                <p class="know-more-content">Discover the importance of marine biodiversity for healthy ecosystems.</p>
+            </div>
+            <div class="card" onclick="showAlert('Card 3 Information')">
+                <img src="https://th.bing.com/th/id/R.1f26ee5ffa94fa147fa2a43b0afa1496?rik=1PkDNY%2b8JZpgVA&riu=http%3a%2f%2fbiol1114.okstate.edu%2fsample_tests%2fpreview_material%2fexam4%2fS12%2fimages%2fcafo-fish-algae-bloom-585-mfk020311.jpg&ehk=raQCehJ%2fVbqC3vzghkaj4BUCwLiD5epja1eCa0gUmuY%3d&risl=&pid=ImgRaw&r=0"
+                    alt="Card 3" class="card-img">
+                <h3>Eutrophication</h3>
+                <p class="know-more-content">Learn about the causes and effects of eutrophication in coastal waters.</p>
+            </div>
+        </section>
+        <h1 class="know-more-title">latest news</h1>
+
+        <section class="info">
+            <div class="info">
+                <!-- <img src="https://pace.oceansciences.org/images/orca-team_800x600.jpg" alt="Info 1" class="info-img"> -->
+                <div class="info-paragraph">
+                    <p><b>Complex Beauty in the Gulf of Oman</b>:
+                        On February 8, 2024, NASA’s PACE satellite launched aboard a SpaceX Falcon 9 rocket. Within two
+                        months, engineer Joseph Knuble showcased a gallery of 36 images, including a striking view of
+                        the Gulf of Oman. <br><br>
+
+                        <b>NASA’s ORCA and AirHARP Projects Pave the Way for PACE</b>:
+                        In the early 2000s, NASA developed the Ocean Radiometer for Carbon Assessment (ORCA) instrument,
+                        which became PACE’s primary research tool. In the 2010s, the University of Maryland collaborated
+                        with NASA to create the Hyper Angular Rainbow Polarimeter (HARP), designed to measure
+                        atmospheric aerosols. <br><br>
+
+                        <b>NASA’s Near Space Network Supports PACE Climate Mission</b>:
+                        PACE has transmitted its first operational data to researchers, enabled by advancements in
+                        data-storing technology from NASA's Near Space Network, enhancing capabilities for PACE and
+                        future missions..
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <h1 class="know-more-title">PACE StoryMaps & E-brochures Overview</h1>
+        <section class="info">
+            <div class="info">
+                <div class="info-paragraph">
+                    <p>NASA's PACE (Phytoplankton, Aquatic, and Coastal Ecosystem) project offers interactive StoryMaps
+                        and E-brochures that highlight its mission and findings. These resources showcase the importance
+                        of phytoplankton in carbon cycling and ocean health. They include captivating visuals from the
+                        satellite’s imaging capabilities and detailed explanations of its technology and data collection
+                        methods. The materials aim to engage the public and enhance understanding of marine ecosystems
+                        and their responses to climate change. Through these tools, PACE promotes awareness of ocean
+                        conservation and scientific research.</p>
+                </div>
+                <!-- <img src="info-image2.jpg" alt="Info 2" class="info-img"> -->
+            </div>
+        </section>
+        <h1 class="know-more-title">Media Gallery</h1>
+        <section class="info">
+            <div class="info">
+                <!-- <img src="info-image3.jpg" alt="Info 3" class="info-img"> -->
+                <div class="info-paragraph">
+                    <p>The PACE Media Gallery features a collection of stunning images and videos showcasing the
+                        satellite’s observations of ocean ecosystems. It includes:
+                        <br><br>
+                        <b>Satellite Imagery</b> : High-resolution images captured by the PACE satellite, highlighting
+                        phytoplankton distribution, ocean color variations, and coastal ecosystem dynamics.
+                        <br><br>
+                        <b>Videos</b>: Engaging animations and documentaries that illustrate the PACE mission, its
+                        technology,
+                        and its significance in studying marine environments.
+                        <br><br>
+                        <b> Infographics</b>: Visual representations of data, explaining complex scientific concepts
+                        related to
+                        ocean health, carbon cycling, and the impact of climate change on aquatic ecosystems.
+                        <br><br>
+                        <b>Educational Materials</b>: Resources for educators and students to learn about oceanography
+                        and the
+                        role of phytoplankton in maintaining marine health.
+                        <br><br>
+                        <b>Press Releases</b>: Updates on mission milestones, scientific findings, and collaborations
+                        within
+                        the PACE project.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section class="additional-images">
+            <img src="pace sattilite.jpg" alt="Image 1" class="additional-img">
+            <img src="https://pace.oceansciences.org/images/pace_rotator_training_events.jpg" alt="Image 2" class="additional-img">
+            <img src="https://pace.oceansciences.org/images/pace_rotator_first_light_storymap.jpg" alt="Image 3" class="additional-img">
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2024 BY Tream Space_Explorers</p>
+    </footer>
+
+    <script>
+        function showAlert(info) {
+            alert(info);
+        }
+    </script>
+</body>
+
+</html>

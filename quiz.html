@@ -1,126 +1,2532 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
+    <!-- Google tag (gtag.js) -->
+    <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-YN18WHESZ3"></script>
+  <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-YN18WHESZ3'); </script> -->
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Interactive Quiz</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            margin: 0;
-            padding: 20px;
-            background-color: #f0f0f0;
-        }
-        .topic {
-            cursor: pointer;
-            padding: 10px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            margin: 10px;
-            display: inline-block;
-        }
-        .question-container {
-            display: none;
-            margin-top: 20px;
-        }
-        .doll {
-            position: absolute;
-            width: 100px; /* Set the size of the doll */
-            bottom: 10%;
-            left: 50%;
-            transform: translateX(-50%);
-            display: none; /* Hide it initially */
-        }
-        @keyframes walk {
-            0% { left: 50%; }
-            100% { left: 100%; }
-        }
-    </style>
+    <meta http-eqiv="Cache-Control" content="no-cache">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description"
+        content="PACE's technologies will provide unprecedented insight into Earth's ocean and atmosphere, which impact life by regulating climate and making Earth habitable">
+    <meta name="keywords"
+        content="PACE, NASA, ocean color, aerosol, plankton, phytoplankton, ocean ecosystem, chlorophyll, harmful algal blooms, air quality, airborne particles, ecological forecasting, living ocean, marine food web, clouds, ocean ecology, satellite observations, living planet, carbon dioxide, climate">
+    <meta name="robots" content="INDEX, FOLLOW">
+
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+        integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" />
+    <link rel="stylesheet" type="text/css" href="aos.css" />
+    <link rel="stylesheet" type="text/css" href="slick.css" />
+    <link rel="stylesheet" type="text/css" href="slick-theme.css" />
+    <link rel="stylesheet" href="bootstrap.min.css">
+    <link rel="stylesheet" href="jquery.countdown.css">
+    <link rel="stylesheet" href="all5.css">
+
+    <link rel="stylesheet" type="text/css" href="fresco.css">
+    <link rel="stylesheet" href="MyFontsWebfontsKit.css">
+    <script src="html5lightbox.js"></script>
+
+
+    <title>NASA PACE - Home</title>
+
 </head>
-<body>
 
-<h1>Interactive Quiz</h1>
-
-<div>
-    <div class="topic" onclick="startQuiz('topic1')">Topic 1: Chemistry</div>
-    <div class="topic" onclick="startQuiz('topic2')">Topic 2: Biology</div>
-    <div class="topic" onclick="startQuiz('topic3')">Topic 3: Geography</div>
-</div>
-
-<div id="question-container" class="question-container">
-    <h2 id="quiz-title"></h2>
-    <div id="question"></div>
-    <div id="options"></div>
-    <div id="feedback" style="margin-top: 20px;"></div>
-</div>
-
-<img id="doll" class="doll" src="logo.png" alt="Doll" />
-
-<script>
-    let currentQuestion = 0;
-    const quizData = {
-        topic1: {
-            title: "Chemistry Quiz",
-            questions: [
-                {
-                    question: "What is the chemical formula of water?",
-                    options: ["H2O", "O2", "CO2", "NaCl"],
-                    answer: 0,
-                    explanation: "The chemical formula of water is H2O, consisting of two hydrogen atoms and one oxygen atom."
-                },
-                // Add more questions as needed
-            ]
-        },
-        // Add other topics and questions similarly
-    };
-
-    function startQuiz(topic) {
-        currentQuestion = 0;
-        const data = quizData[topic];
-        document.getElementById("quiz-title").innerText = data.title;
-        document.getElementById("question-container").style.display = "block";
-        showQuestion(data.questions[currentQuestion]);
+<style>
+    .inner-content,
+    .inner-content li {
+        display: block !important;
     }
 
-    function showQuestion(questionData) {
-        document.getElementById("question").innerText = questionData.question;
-        const optionsContainer = document.getElementById("options");
-        optionsContainer.innerHTML = '';
-        questionData.options.forEach((option, index) => {
-            const button = document.createElement("button");
-            button.innerText = option;
-            button.onclick = () => checkAnswer(index, questionData);
-            optionsContainer.appendChild(button);
-        });
+    .list.list-social {
+        overflow: hidden;
+        margin: 10px 0;
     }
 
-    function checkAnswer(selected, questionData) {
-        const feedback = document.getElementById("feedback");
-        if (selected === questionData.answer) {
-            feedback.innerText = "Correct!";
-            showDollAndExplain(questionData.explanation);
-        } else {
-            feedback.innerText = "Wrong! Try Again.";
+    .list {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    .list.list-social li {
+        float: left;
+        margin-right: 12px;
+    }
+
+    .list.list-social li .box-icon {
+        width: 60px;
+        height: 60px;
+        line-height: 60px;
+        font-size: 40px;
+        -webkit-border-radius: 5px;
+        border-radius: 5px;
+    }
+
+    .box-icon {
+        display: block;
+        background: #404142;
+        color: #fff;
+        width: 30px;
+        height: 30px;
+        line-height: 30px;
+        text-align: center;
+        padding: 0;
+        -webkit-transition: 0.3s;
+        -moz-transition: 0.3s;
+        -o-transition: 0.3s;
+        -ms-transition: 0.3s;
+        transition: 0.3s;
+    }
+
+    a.box-icon:hover {
+        color: #a9c9ae;
+    }
+
+    .white-section .container {
+        max-width: 1250px;
+    }
+
+    .container {
+        max-width: 1250px;
+    }
+
+    .light-green-section .container {
+        max-width: 1250px;
+
+    }
+
+    .footer-holder a {
+        color: #44a053;
+    }
+
+    .count-down
+
+    /* overrides all4.css:252 */
+        {
+        max-width: 625px;
+    }
+
+    .count-down-visual
+
+    /* overrides all4.css:214 */
+        {
+        padding: 15px 0 15px;
+    }
+
+    .newsec .media-gallery-row {
+
+        padding: 14px 0px 20px 0px;
+        background: url(../images/tabs-bg.jpg) center center no-repeat;
+        background-size: cover;
+        height: 100px;
+        position: relative;
+        align-items: flex-start;
+
+    }
+
+
+
+
+    .gcol-1 {
+        width: 26%;
+    }
+
+    .gcol-2 {
+        width: 17%;
+    }
+
+    .gcol-3 {
+        width: 24%;
+    }
+
+    .gcol-4 {
+        width: 15%;
+    }
+
+    .gcol-5 {
+        width: 18%;
+    }
+
+
+
+
+
+
+    .responsive-row {
+        gap: 0px !important;
+    }
+
+    .infomain {
+        color: #FFF;
+        display: flex;
+    }
+
+    .infomain .info {
+        background: #0000002b;
+        padding: 0px;
+    }
+
+    .infomain .chunk {
+        display: inline-block;
+        text-align: center;
+        border-right: 1px solid #cccccc59;
+        padding: 10px 2px 0px 2px;
+        height: 100%;
+        min-width: 50px;
+    }
+
+    .infomain .chunk span {
+        display: inline-block;
+        font-size: 20px;
+        font-weight: 900;
+        padding-top: 0px;
+        line-height: 0px;
+        padding-bottom: 0px;
+    }
+
+    .infomain .pel {
+        padding-right: 10px;
+        text-align: center;
+    }
+
+    .infomain .infoimg img {
+        padding-left: 10px;
+        width: 90px;
+
+    }
+
+    .newsec .media-gallery-row .gallery-col {
+        background: #e0f3e300;
+        min-height: 80px;
+        display: inline-block;
+        padding: 0px;
+        margin: 0px;
+    }
+
+    .gallery-col .details {
+        padding: 0px !important;
+    }
+
+    .newsec .media-gallery-row .gallery-col .details h2 {
+        text-align: center;
+    }
+
+    .newsec .media-gallery-row .gallery-col .details h2 a {
+        font-family: var(--calibri);
+        color: #FFF;
+        font-size: 26px;
+    }
+
+    .newsec .media-gallery-row .gallery-col .details p {
+        padding-top: 20px;
+        font-size: 18px;
+        color: #e0f3e3
+    }
+
+    .newsec .media-gallery-row .gallery-col .details p span {
+        font-size: 36px;
+        font-weight: bold;
+        color: #fff;
+    }
+
+    .newsec {
+        padding-top: 0px;
+        padding-bottom: 0px;
+    }
+
+    /* only screen and max-width:992px {
+		.gcol-1
+		{
+			width:40% !important;
+		}
+		.gcol-2
+		{
+			width:25% !important;
+		}
+		.gcol-3
+		{
+			width:30% !important;
+		}
+		.gcol-4
+		{
+			width:35% !important;
+			padding-top: 25px !important;
+		}
+		.gcol-5
+		{
+			width:41% !important;
+			padding-top: 25px !important;
+		}
+		.newsec .media-gallery-row
+		{
+			height: 206px;
+		}
+	} 
+	
+	
+	
+	.modal .modal-dialog p
+	{
+		padding-bottom:12px;
+	}
+	 */
+
+    .respp {
+        width: 95%;
+        height: 90%;
+    }
+
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f0f0;
+        margin: 0;
+        padding: 0;
+    }
+
+    .ocean-ecology {
+        background-color: #5CAF75;
+        padding: 50px 0;
+        color: white;
+    }
+
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+    }
+
+    /* h1 {
+    text-align: left;
+    font-size: 36px;
+    margin-bottom: 30px;
+} */
+
+    .content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+
+    .images {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px;
+    }
+
+    .circle {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        overflow: hidden;
+        background-color: #fff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        /* Change cursor to pointer on hover */
+    }
+
+    .circle img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .question-mark {
+        background-color: #ddd;
+        color: black;
+        font-size: 48px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .text-section {
+        max-width: 500px;
+        padding: 20px;
+    }
+
+    .text-section h2 {
+        font-size: 28px;
+        margin-bottom: 20px;
+    }
+
+    .info-text {
+        display: none;
+        /* Hide all paragraphs by default */
+    }
+
+    .info-text.active {
+        display: block;
+        /* Show the active paragraph */
+    }
+
+    .read-more {
+        display: inline-block;
+        margin-top: 20px;
+        padding: 10px 20px;
+        background-color: #fff;
+        color: #5CAF75;
+        text-decoration: none;
+        border-radius: 20px;
+    }
+
+    .read-more:hover {
+        background-color: #e1e1e1;
+    }
+
+    /* Additional Styles for Three Circles Per Row */
+    @media (min-width: 600px) {
+        .images {
+            flex-direction: row;
+            /* Ensure circles are in a row */
+            justify-content: center;
+            /* Center the circles */
+        }
+
+        .circle {
+            flex: 0 0 30%;
+            /* Each circle takes up about 30% of the row */
+            max-width: 120px;
+            /* Max width of each circle */
         }
     }
 
-    function showDollAndExplain(explanation) {
-        const doll = document.getElementById("doll");
-        doll.style.display = "block"; // Show the doll
-        doll.style.animation = "none"; // Reset animation
-        doll.style.left = "50%"; // Start position
-        doll.offsetHeight; // Trigger reflow
-        doll.style.animation = "walk 4s forwards"; // Start walking animation
-
-        setTimeout(() => {
-            alert(explanation); // Show explanation in alert after doll stops
-            doll.style.display = "none"; // Hide the doll after explanation
-        }, 4000); // Match this with the animation duration
+    .container .logo_heading {
+    font-size: 33px;
+    font-weight: bold;
+    margin-left: 169px;
+    margin-top: -167px;
+    margin-bottom: -49px;
+    font-family: var(--playFairDisplay);
+}
+    .pase_text {
+        text-align: center;
+        margin-right: -620px;
     }
-</script>
+</style>
 
-</body>
-</html>
+<body class="homepage">
+
+    <div class="header-holder">
+        <div class="container">
+            <div class="logo">
+                <a href=""><img src="logo1.png" alt="NASA logo"></a>
+                <div class="logo_heading">
+                    <h1>Explorers</h1>
+                </div>
+
+            </div>
+
+            <!-- <div class="pace-logo">
+                <a href=""><img src="logo.png" alt="PACE logo"></a>
+            </div> -->
+
+            <!-- this is the logos of face book twittwe and serch -->
+            <!-- <div class="socials-col">
+                <ul class="header-socials">
+                    <li>
+                        <form action="/search.htm" method="POST">
+                            <div class="search-form">
+                                <input type="search" name="search" class="input-field " placeholder="Search...">
+                                <button type="button" name="" class="search-btn"><i class="fa fa-search"
+                                        aria-hidden="true"></i></button>
+                            </div>
+                        </form>
+                    </li>
+                    <li><a href="https://twitter.com/NASAOcean" target="_blank" class="twitter"><i class="fa fa-twitter"
+                                aria-hidden="true"></i></a></li>
+                    <li><a href="https://www.facebook.com/NASA.Ocean/" target="_blank" class="facebook"><i
+                                class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                </ul>
+            </div> -->
+            <div class="hamburger-menu-container">
+                <div class="hamburger-menu menu-btn">
+                    <div></div>
+                </div>
+            </div>
+        </div>
+        <div class="mobile-menu-footer">
+            <div class="pace-logo">
+                <a href="#"><img src="pace.jpg" alt=""></a>
+            </div>
+            <div class="socials-col">
+                <ul class="header-socials">
+                    <li>
+                        <form action="/search.htm" method="POST">
+                            <div class="search-form">
+                                <input type="search" name="search" class="input-field opened" placeholder="Search...">
+                                <button type="button" name="" class="search-btn"><i class="fa fa-search"
+                                        aria-hidden="true"></i></button>
+                            </div>
+                        </form>
+                        <!-- </li>
+                    <li><a href="https://twitter.com/NASAOcean" target="_blank" class="twitter"><i class="fa fa-twitter"
+                                aria-hidden="true"></i></a></li>
+                    <li><a href="https://www.facebook.com/NASA.Ocean/" target="_blank" class="facebook"><i
+                                class="fa fa-facebook" aria-hidden="true"></i></a></li> -->
+                </ul>
+            </div>
+        </div>
+
+
+        <div class="nav-links">
+            <ul>
+                <li class="nav-link">
+                    <!-- <a href="/home.htm">Home</a> -->
+                </li>
+                <li class="nav-link about-menu menu-item-has-children">
+                    <!-- <a href="#!">About <i class="fa fa-caret-down" aria-hidden="true"></i></a> -->
+                    <!-- <div class="dropdown">
+          <ul class="first">
+            <li class="dropdown-link"><a href="/about.htm">GET TO KNOW PACE</a></li>
+            <li class="dropdown-link"><a href="/mission_science.htm">MISSION SCIENCE OBJECTIVES</a></li>
+            <li class="dropdown-link"><a href="/faqs.htm">FAQS</a></li>
+            <li class="dropdown-link"><a href="/blog.htm">BLOG</a></li>
+            <li class="dropdown-link"><a href="/information_for_the_media.htm">INFORMATION FOR THE MEDIA</a></li>
+            <div class="arrow">&nbsp;</div>
+          </ul>
+        </div> -->
+                </li>
+                <li class="nav-link mission-menu menu-item-has-children">
+                    <!-- <a href="#!">Mission <i class="fa fa-caret-down" aria-hidden="true"></i></a> -->
+                    <div class="dropdown">
+                        <!-- <ul class="first">
+                            <li class="dropdown-link"><a href="/mission.htm">OVERVIEW</a></li>
+                            <li class="dropdown-link"><a href="/timeline.htm">TIMELINE</a></li>
+                            <li class="dropdown-link"><a href="/oci.htm">OCEAN COLOR INSTRUMENT</a></li>
+                            <li class="dropdown-link"><a href="/spexone.htm">SPEXone POLARIMETER</a></li>
+                            <li class="dropdown-link"><a href="/harp2.htm">HARP2 POLARIMETER</a></li>
+                            <li class="dropdown-link"><a href="/storymaps.htm?id=1887" target="_blank"><em>Something New
+                                        Under the Sun</em> STORYMAP</a></li>
+                            <li class="dropdown-link"><a href="/paper_model.htm">BUILD YOUR OWN PACE!</a></li>
+                            <div class="arrow">&nbsp;</div>
+                        </ul> -->
+                    </div>
+                </li>
+                <li class="nav-link science-menu menu-item-has-children">
+                    <!-- <a href="#!">Science <i class="fa fa-caret-down" aria-hidden="true"></i></a> -->
+                    <div class="dropdown">
+                        <ul class="first">
+                            <li class="dropdown-link"><a href="/science.htm">OVERVIEW</a></li>
+                            <li class="dropdown-link"><a href="/science_applications_team.htm">SCIENCE &amp;
+                                    APPLICATIONS TEAM</a></li>
+                            <li class="dropdown-link"><a href="/shapes.htm">GET INTO SHAPES WITH PACE</a></li>
+                            <!--
+            <li class="dropdown-link"><a href="/storymaps.htm?id=2089" target="_blank"><em>Life &amp; Water Level</em> STORYMAP</a></li>
+            <li class="dropdown-link"><a href="/storymaps.htm?id=2087" target="_blank"><em>The Saga of Sargassum</em> STORYMAP</a></li>
+            <li class="dropdown-link"><a href="/storymaps.htm?id=1920" target="_blank"><em>PACE Supports the UN Ocean Decade</em> STORYMAP</a></li>
+            <li class="dropdown-link"><a href="/storymaps.htm?id=1914" target="_blank"><em>Puzzling Out with PACE</em> STORYMAP</a></li>
+            <li class="dropdown-link"><a href="/storymaps.htm?id=1883" target="_blank"><em>Around Our Living Planet</em> STORYMAP</a></li>
+-->
+                            <li class="dropdown-link"><a href="/gallery.htm?id=storymap">STORYMAPS</a></li>
+                            <li class="dropdown-link"><a href="/campaigns.htm">CAMPAIGNS</a></li>
+                            <li class="dropdown-link"><a href="/interactive.htm">PACE BY WAVELENGTH</a></li>
+                            <li class="dropdown-link"><a href="/phytopia.htm">PHYTOPLANKTON EXPLORATION</a></li>
+                            <div class="arrow">&nbsp;</div>
+                        </ul>
+                    </div>
+                </li>
+                <li class="nav-link applications-menu menu-item-has-children">
+                    <!-- <a href="#!">Applications <i class="fa fa-caret-down" aria-hidden="true"></i></a> -->
+                    <div class="dropdown">
+                        <ul class="first">
+                            <li class="dropdown-link"><a href="/applications.htm">OVERVIEW</a></li>
+                            <li class="dropdown-link"><a href="/app_community.htm">COMMUNITY OF PRACTICE</a></li>
+                            <li class="dropdown-link"><a href="/app_adopters.htm">EARLY ADOPTERS</a></li>
+                            <li class="dropdown-link"><a href="/app_involved.htm">GET INVOLVED</a></li>
+                            <li class="dropdown-link"><a href="/app_matrix.htm">CAPABILITY MATRIX</a></li>
+
+                            <div class="arrow">&nbsp;</div>
+                        </ul>
+                    </div>
+                </li>
+                <li class="nav-link data-menu menu-item-has-children">
+                    <!-- <a href="#!">Data <i class="fa fa-caret-down" aria-hidden="true"></i></a> -->
+                    <!-- <div class="dropdown right">
+                        <ul class="first">
+                            <li class="dropdown-link"><a href="/data.htm">DATA PRODUCTS OVERVIEW</a></li>
+                            <li class="dropdown-link"><a href="/data_table.htm">DATA PRODUCTS TABLE</a></li>
+                            <li class="dropdown-link"><a href="/recentmapdata.htm">RECENT PACE DATA</a></li>
+                            <li class="dropdown-link"><a href="/work_with_pace_data.htm">GET READY TO WORK WITH PACE
+                                    DATA</a></li>
+                            <li class="dropdown-link"><a href="/about_pace_data.htm">WHAT YOU SHOULD KNOW ABOUT PACE
+                                    DATA</a></li>
+                            <li class="dropdown-link"><a href="/access_pace_data.htm">ACCESS PACE DATA</a></li>
+                            <li class="dropdown-link"><a
+                                    href="https://oceancolor.gsfc.nasa.gov/data/reprocessing/V2.0/pace-oci/">PACE DATA
+                                    RELEASE NOTES</a></li>
+                            <li class="dropdown-link"><a href="/pace_data_matchups.htm">PACE DATA MATCHUPS</a></li>
+                            <li class="dropdown-link"><a href="/pvstdoi.htm">PACE VALIDATION SCIENCE TEAM</a></li>
+                            <li class="dropdown-link"><a
+                                    href="https://oceancolor.gsfc.nasa.gov/data/pace/characterization">INSTRUMENT
+                                    CHARACTERIZATION DATA</a></li>
+                            <li class="dropdown-link"><a href="/ocean_color_gallery.htm">OCEAN COLOR IMAGES:
+                                    CATEGORIES</a></li>
+                            <li class="dropdown-link"><a href="/storymaps.htm?id=1885">OCEAN COLOR IMAGES: INTERACTIVE
+                                    MAP</a></li>
+                            <li class="dropdown-link"><a href="/storymaps.htm?id=1886">OCEAN COLOR IMAGES: OUR
+                                    FAVORITES</a></li>
+                            <div class="arrow">&nbsp;</div>
+                        </ul>
+                    </div> -->
+                </li>
+                <li class="nav-link learn-menu menu-item-has-children">
+                    <!-- <a href="#!">Learn More <i class="fa fa-caret-down" aria-hidden="true"></i></a> -->
+                    <div class="dropdown right">
+                        <ul class="first">
+                            <li class="dropdown-link"><a href="/whatispace_main.htm">SHEDDING LIGHT ON PACE</a></li>
+                            <li class="dropdown-link"><a href="/pace_eq_intro.htm">PACE - IT ALL ADDS UP!</a></li>
+                            <li class="dropdown-link"><a href="/learn_thematic.htm">THEMATIC RESOURCES</a></li>
+                            <li class="dropdown-link"><a href="/learn_technical.htm">TECHNICAL RESOURCES</a></li>
+                            <li class="dropdown-link"><a href="/learn_documents.htm">DOCUMENTS</a></li>
+                            <div class="arrow">&nbsp;</div>
+                        </ul>
+                    </div>
+                </li>
+                <!-- <li class="nav-link news-menu">
+        <a href="/news.htm">News</a>
+      </li> -->
+                <!-- <li class="nav-link events-menu">
+        <a href="/events.htm">Events</a>
+      </li> -->
+                <li class="nav-link gallery-menu menu-item-has-children">
+                    <!-- <a href="#!">Gallery <i class="fa fa-caret-down" aria-hidden="true"></i></a> -->
+                    <div class="dropdown right">
+                        <ul class="first">
+                            <li class="dropdown-link"><a href="/gallery.htm">ALL MEDIA</a></li>
+                            <li class="dropdown-link"><a href="/gallery.htm?id=image">IMAGES</a></li>
+                            <li class="dropdown-link"><a href="/gallery.htm?id=video">VIDEOS</a></li>
+                            <li class="dropdown-link"><a href="/gallery.htm?id=storymap">STORYMAPS</a></li>
+                            <li class="dropdown-link"><a href="/gallery_first_light.htm">FIRST LIGHT</a></li>
+                            <li class="dropdown-link"><a href="/gallery.htm?id=e-brochure">BROCHURES</a></li>
+                            <li class="dropdown-link"><a href="/gallery.htm?id=show">SLIDESHOWS</a></li>
+                            <li class="dropdown-link"><a href="/gallery.htm?id=podcast">PODCASTS</a></li>
+                            <li class="dropdown-link"><a href="/gallery.htm?id=coloring">COLORING PAGES</a></li>
+                            <div class="arrow">&nbsp;</div>
+                        </ul>
+                    </div>
+                </li>
+                <li class="nav-link documents-menu menu-item-has-children">
+                    <!-- <a href="#!">Documents <i class="fa fa-caret-down" aria-hidden="true"></i></a> -->
+                    <div class="dropdown right">
+                        <ul class="first">
+                            <li class="dropdown-link"><a href="/documents.htm">ALL DOCUMENTS</a></li>
+                            <li class="dropdown-link"><a href="/documents.htm?id=memo">TECHNICAL MEMOS</a></li>
+                            <li class="dropdown-link"><a href="/documents.htm?id=presentation">PRESENTATION
+                                    MATERIALS</a></li>
+                            <li class="dropdown-link"><a href="/documents.htm?id=report">REPORTS AND PAPERS</a></li>
+                            <li class="dropdown-link"><a href="/documents.htm?id=atbd">ATBDs</a></li>
+                            <li class="dropdown-link"><a href="/documents.htm?id=newsletter">NEWSLETTERS</a></li>
+
+                            <li class="dropdown-link"><a href="/publications.cgi">PUBLICATIONS</a></li>
+                            <div class="arrow">&nbsp;</div>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+    <!-- ROTATOR start -->
+    <div class='banner-holder'>
+        <div id='demo' class='carousel slide' data-ride='carousel'>
+            <ul class='carousel-indicators'>
+                <li data-target='#demo' data-slide-to='0' class='active'></li>
+                <li data-target='#demo' data-slide-to='1'></li>
+                <li data-target='#demo' data-slide-to='2'></li>
+                <li data-target='#demo' data-slide-to='3'></li>
+                <li data-target='#demo' data-slide-to='4'></li>
+                <!-- <li data-target='#demo' data-slide-to='5'></li>
+                <li data-target='#demo' data-slide-to='6'></li>
+                <li data-target='#demo' data-slide-to='7'></li>
+                <li data-target='#demo' data-slide-to='8'></li>
+                <li data-target='#demo' data-slide-to='9'></li>
+                <li data-target='#demo' data-slide-to='10'></li>
+                <li data-target='#demo' data-slide-to='11'></li>
+                <li data-target='#demo' data-slide-to='12'></li>
+                <li data-target='#demo' data-slide-to='13'></li>
+                <li data-target='#demo' data-slide-to='14'></li>
+                <li data-target='#demo' data-slide-to='15'></li>
+                <li data-target='#demo' data-slide-to='16'></li> -->
+            </ul>
+            <div class='carousel-inner'>
+
+                <div class='carousel-item active'>
+                    <img src='pace.jpg' alt='PLANKTON, AEROSOL, CLOUD, OCEAN ECOSYSTEM, NASA/GSFC UMBC SRON/AIRBUS NL'>
+                </div> <!-- /carousel-item -->
+
+                <div class='carousel-item'>
+                    <a href=''>
+                        <img src='abc.jpg' alt=''>
+                        <div class='banner-content'>
+                            <div class='container'>
+                                <h2>Knowledge Network and Learning Circle;»</h2>
+                                <p>The PACE mission aims to engage with research and application communities interested
+                                    in utilizing PACE products to meet their specific needs. &#187;</p>
+                            </div>
+                        </div>
+                    </a>
+                </div> <!-- /carousel-item -->
+
+                <div class='carousel-item'>
+                    <a href=''>
+                        <img src='4th.jpg' alt=''>
+                        <div class='banner-content'>
+                            <div class='container'>
+                                <h2>The Rising Temperature of Ocean Ecosystems;»</h2>
+                                <p>Rising sea temperatures transform marine ecosystems, impacting creatures from whales
+                                    to plankton &#187;</p>
+                            </div>
+                        </div>
+                    </a>
+                </div> <!-- /carousel-item -->
+
+                <div class='carousel-item'>
+                    <a href=''>
+                        <img src='word in water.jpg' alt=''>
+                        <div class='banner-content'>
+                            <div class='container'>
+                                <h2>The Ocean's Hidden Microcosm;»</h2>
+                                <p>"Each drop of seawater hosts hundreds of species and thousands of cells. PACE is here
+                                    to help us uncover them." &#187;</p>
+                            </div>
+                        </div>
+                    </a>
+                </div> <!-- /carousel-item -->
+
+                <!-- <div class='carousel-item'>
+                    <a href='/gallery_more.htm?id=2190'>
+                        <img src='images/pace_rotator_first_light_video.jpg' alt=''>
+                        <div class='banner-content'>
+                            <div class='container'>
+                                <h2>First Look at OCI, HARP2, and SPEXone data&nbsp;»</h2>
+                                <p>From types of phytoplankton to tiny atmospheric particles, PACE sees it all! &#187;
+                                </p>
+                            </div>
+                        </div>
+                    </a>
+                </div> 
+
+                <div class='carousel-item'>
+                    <a href='https://www.nasa.gov/earth/nasas-pace-data-on-ocean-atmosphere-climate-now-available/'>
+                        <img src='images/pace_rotator_first_light.jpg' alt=''>
+                        <div class='banner-content'>
+                            <div class='container'>
+                                <h2>PACE Data Now Available!&nbsp;»</h2>
+                                <p>NASA is now publicly distributing science-quality data from PACE &#187;</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <div class='carousel-item'>
+                    <a href='/storymaps.htm?gallery=FL&id=3'>
+                        <img src='images/pace_rotator_first_light_storymap.jpg' alt=''>
+                        <div class='banner-content'>
+                            <div class='container'>
+                                <h2>PACE “First Light” Gallery&nbsp;»</h2>
+                                <p>Be among the first to take a global tour of PACE's Ocean Color Instrument (OCI)
+                                    images! &#187;</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>  -->
+
+                <!-- <div class='carousel-item'>
+                    <a
+                        href='https://www.nasa.gov/news-release/nasa-launches-new-climate-mission-to-study-ocean-atmosphere/'>
+                        <img src='images/pace_rotator_liftoff.jpg' alt=''>
+                        <div class='banner-content'>
+                            <div class='container'>
+                                <h2>NASA Launches PACE Satellite&nbsp;»</h2>
+                                <p>PACE launched successfully into orbit at 1:33 a.m. EST on February 8, 2024 &#187;</p>
+                            </div>
+                        </div>
+                    </a>
+                </div> -->
+                <!-- /carousel-item -->
+
+                <!-- <div class='carousel-item'>
+                    <a href='/gallery_more.htm?id=2097'>
+                        <img src='images/pace_rotator_new_atmos_dimension.jpg' alt=''>
+                        <div class='banner-content'>
+                            <div class='container'>
+                                <h2>Revealing a New Dimension of Atmospheric Info&nbsp;»</h2>
+                                <p>PACE's polarimeters will help us better understand clouds & aerosols in the Earth
+                                    system &#187;</p>
+                            </div>
+                        </div>
+                    </a> -->
+                <!-- </div> -->
+                <!-- <div class='carousel-item'>
+                    <a href='/storymaps.htm?id=2096'>
+                        <img src='images/pace_rotator_air_equality_2160w_800h.jpg' alt='Air (E)quality'>
+                        <div class='banner-content'>
+                            <div class='container'>
+                                <h2>Air (E)quality&nbsp;»</h2>
+                                <p>Marcela Loría-Salazar&#39;s work is motivated by PACE&#39;s potential to meet the
+                                    needs of underserved communities with less access to air quality information &#187;
+                                </p>
+                            </div>
+                        </div>
+                    </a>
+                </div> -->
+
+                <!-- <div class='carousel-item'>
+                    <a href='/storymaps.htm?id=2094'>
+                        <img src='images/pace_rotator_world_water_2160w_800h.jpg' alt='A World in Water'>
+                        <div class='banner-content'>
+                            <div class='container'>
+                                <h2>A World in Water&nbsp;»</h2>
+                                <p>A drop of seawater can host hundreds of species & thousands of cells&#x2026; PACE is
+                                    designed to help identify them &#187;</p>
+                            </div>
+                        </div>
+                    </a>
+                </div> -->
+                <!-- 
+                <div class='carousel-item'>
+                    <a href='/gallery_more.htm?id=2093'>
+                        <img src='images/pace_rotator_phyto_phyters_2160w_800h_darker.jpg'
+                            alt='The Insanely Important World of Phytoplankton'>
+                        <div class='banner-content'>
+                            <div class='container'>
+                                <h2>The Insanely Important World of Phytoplankton&nbsp;»</h2>
+                                <p>Meet the &#34;Phyto Phyters&#34; and PACE&#39;s Science Lead for Ocean Biochemistry,
+                                    Ivona Cetinic&#769; &#187;</p>
+                            </div>
+                        </div>
+                    </a>
+                </div> / -->
+
+                <!-- <div class='carousel-item'>
+                    <a href='/gallery_more.htm?id=2092'>
+                        <img src='images/pace_rotator_sea_of_data_2160w_800h.jpg' alt='PACE - sea of data'>
+                        <div class='banner-content'>
+                            <div class='container'>
+                                <h2>A Sea of Data with PACE&nbsp;»</h2>
+                                <p>PACE will expand NASA's "ocean coloring book" from 8 crayons to 128! &#187;</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                
+                 -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+                <!-- /carousel-item -->
+                <!-- 
+                <div class='carousel-item'>
+                    <a href='/app_community.htm'>
+                        <img src='images/pace_rotator_cop_2160w_800h.jpg' alt=''>
+                        <div class='banner-content'>
+                            <div class='container'>
+                                <h2>Community of Practice&nbsp;»</h2>
+                                <p>The PACE mission wants to engage with research and applications communities that are
+                                    interested in using PACE products for their own needs. Learn more &#187;</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                 -->
+
+                <!-- <div class='carousel-item'>
+                    <a href='/phytopia.htm'>
+                        <img src='images/slide_05_2160w_800h.gif' alt=''>
+                        <div class='banner-content'>
+                            <div class='container'>
+                                <h2>Living Ocean Discovery&nbsp;»</h2>
+                                <p>Our advanced technology is designed to detect the diversity and composition of
+                                    phytoplankton communities &#187;</p>
+                            </div>
+                        </div>
+                    </a>
+                </div> -->
+                <!-- /carousel-item -->
+
+                <!-- <div class='carousel-item'>
+                    <a href='/applications.htm'>
+                        <img src='images/slide_06_2160w_800h.jpg' alt=''>
+                        <div class='banner-content'>
+                            <div class='container'>
+                                <h2>Societal Benefits&nbsp;»</h2>
+                                <p>PACE data will be applied to some of our most urgent issues including air quality and
+                                    the health of our coasts &#187;</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>  -->
+                <!-- /carousel-item -->
+
+                <!-- <div class='carousel-item'>
+                    <a href='/science.htm'>
+                        <img src='images/slide_07_2160w_800h.jpg' alt=''>
+                        <div class='banner-content'>
+                            <div class='container'>
+                                <h2>Ocean-Atmosphere Understanding&nbsp;»</h2>
+                                <p>PACE is extending NASA data records while shedding light on the delicate balance
+                                    between our ocean, aerosols, and clouds &#187;</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>  -->
+                <!-- /carousel-item -->
+            </div> <!-- /carousel-inner -->
+            <a class='carousel-control-prev' href='#demo' data-slide='prev'>
+                <i class='fa fa-angle-left' aria-hidden='true'></i>
+            </a>
+            <a class='carousel-control-next' href='#demo' data-slide='next'>
+                <i class='fa fa-angle-right' aria-hidden='true'></i>
+            </a>
+        </div> <!-- /carousel -->
+    </div> <!-- /banner-holder -->
+    <!-- ROTATOR end -->
+    <!-- <div class='loader'></div><a id='page_content'></a>
+    <div id='content'> -->
+    <!-- <div class="white-section newsec" style="background: #46a055;"> -->
+    <!-- <div class="container cntain"> -->
+    <!-- <div class="media-gallery-row responsive-row">
+                    <div class="gallery-col gcol-1">
+                        <div class="details">
+                            <div class="title-and-date" style="width:100%; display: -webkit-inline-box;">
+
+
+
+                                <div class="infomain"> -->
+    <!-- <div class="pel">MISSION<br> ELAPSED <br>TIME </div> -->
+    <!-- <div class="info">
+                                        <div class="chunk">DAYS <br> <span id="days_launch">00</span></div>
+                                        <div class="chunk"> HR <br><span id="hours_launch">00 </span></div>
+                                        <div class="chunk" style="border-right: 0px;"> MIN <br> <span
+                                                id="minutes_launch">00 </span> </div>
+                                    </div> -->
+    <!-- </div>
+
+                            </div>
+                        </div>
+                    </div> -->
+
+    <!-- <div class="gallery-col gcol-2">
+                        <div class="details">
+                            <div class="title-and-date" style="width:100%; display: -webkit-inline-box;">
+
+                                <div class="infomain">
+                                    <div class="pel">ORBIT<br> NUMBER <br><a data-toggle="modal"
+                                            data-target="#myModal01" style="cursor:pointer;"><i
+                                                class="fas fa-question-circle"></i></a> </div>
+                                    <div class="info">
+                                        <div class="chunk" style="border-right: 0px;"> <span id="orbitRev"
+                                                style="padding-top: 25px;">944</span></div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div> -->
+
+    <!-- 
+                    <div class="gallery-col gcol-3">
+                        <div class="details">
+                            <div class="title-and-date" style="width:100%; display: -webkit-inline-box;">
+
+
+                                <div class="infomain">
+                                    <div class="pel">APPROXIMATE<br> POSITION <br><a data-toggle="modal"
+                                            data-target="#myModal02" style="cursor:pointer;"><i
+                                                class="fas fa-question-circle"></i></a> </div>
+                                    <div class="info">
+                                        <div class="chunk">LAT<br><span id="orbitLat">24</span><span></div>
+                                        <div class="chunk" style="border-right: 0px;">LON<br><span id="orbitLon">109
+                                            </span></div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div> -->
+
+
+    <!-- <div class="gallery-col gcol-4">
+                        <div class="details">
+                            <div class="title-and-date" style="width:100%; display: -webkit-inline-box;">
+                                <div class="infomain">
+                                    <div class="pel">SATELLITE<br> LIGHTING <br><a data-toggle="modal"
+                                            data-target="#myModal03" style="cursor:pointer;"><i
+                                                class="fas fa-question-circle"></i> </a></div>
+                                    <div class="info">
+                                        <div class="chunk" style="border-right: 0px;"><span id="sun_sun"
+                                                style="font-weight:normal; font-size:1rem;">DAY</span> <br><span
+                                                id="orbitSun"><i class="fa fa-regular sun"></i> </span></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
+
+    <!-- <div class="gallery-col gcol-5">
+                        <div class="details">
+                            <div class="title-and-date" style="width:100%; display: -webkit-inline-box;">
+
+
+                                <div class="infomain">
+                                    <div class="pel">CLICK TO<br> SEE ON <br>MAP </div>
+                                    <div class="infoimg"><a data-toggle="modal" data-target="#myModal_ifram"
+                                            style="cursor:pointer;"><img src="images/pace_satellite_orbit.png"></a>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div> -->
+
+
+
+
+
+
+
+
+    <!-- 
+                </div>
+            </div>
+        </div>
+ -->
+
+
+
+
+
+
+
+    <div class="light-green-section" style="padding:70px 0 30px;">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="copytext">
+                        <h1><i class="fas fa-satellite"></i>&nbsp;PACE Has Launched!</h1>
+                        <!-- <div class="viewmore-btn" style="padding-left: 0px; padding-right: 0px;">
+                                <a href="/blog.htm" class="btn"
+                                    style="width:auto;font-size:1.15rem;margin-bottom:5px;">Post-launch Updates</a>
+                                <a href="https://oceandata.sci.gsfc.nasa.gov/odps_dashboard/events/" class="btn"
+                                    style="width:auto;font-size:1.15rem;margin-bottom:5px;">Satellite Status Updates</a>
+                                <a href="pace_listserv.htm" class="btn"
+                                    style="width:auto;font-size:1.15rem;margin-bottom:5px;">Join the PACE Community
+                                    Mailing List</a>
+                            </div> -->
+                        <p class="pase_text">
+                            The PACE mission will significantly enhance our understanding of the complex interactions
+                            between the ocean and atmosphere, particularly in carbon dioxide exchange. By providing
+                            high-resolution data, it will reveal how the ocean functions as a vital carbon sink, helping
+                            mitigate climate change. Additionally, PACE will investigate the role of aerosols in
+                            promoting phytoplankton growth, which plays a crucial role in the marine food web. This
+                            knowledge will pave the way for better predictions of marine ecosystem health.
+                            <br><br>
+                            Beyond scientific advancements, PACE data will have practical applications for society and
+                            the economy. One key benefit will be improved monitoring of harmful algal blooms, which can
+                            threaten marine life and public health. By identifying the extent and duration of these
+                            blooms, PACE will empower communities to take timely action and protect their coastal
+                            environments. Ultimately, PACE will extend NASA legacy of Earth observation, equipping us
+                            with essential tools to sustain our planet for future generations.
+                        </p>
+                    </div>
+                    <!--div class="count-down-visual" >
+          <div class="container">
+            <div id="launch" class="count-down">
+              <h2>PACE Mission Elapsed Time</h2>
+                <ul class="timers">
+                <li><span id="days_launch" class="days">00</span><p id="day_days" class="days_text">Days</p></li>
+                <li><span id="hours_launch" class="hours">00</span><p id="hours_hours" class="hours_text">Hours</p></li>
+                <li><span id="minutes_launch" class="minutes">00</span><p id="minute_minutes" class="minutes_text">Minutes</p></li>
+                <li><span id="orbitRev" class="minutes">00</span><p id="minute_minutes" class="minutes_text">Orbit #</p></li>
+                <li><span id="orbitLat" class="minutes">00</span><p id="minute_minutes" class="minutes_text">Lat</p></li>
+                <li><span id="orbitLon" class="minutes">00</span><p id="minute_minutes" class="minutes_text">Lon</p></li>
+                <li><span id="orbitSun" class="minutes">00</span><p id="sun_sun" class="minutes_text">Sun</p></li>
+                </ul>
+            </div>
+            
+          </div>
+        </div-->
+                    <script src="/js/met.js"></script>
+                    <div style="float:left;">
+                        <ul class="list list-social">
+                            <li>
+                                <a class="fa fa-facebook box-icon" target="_blank"
+                                    href="https://www.facebook.com/NASAOcean" data-toggle="tooltip" title=""
+                                    data-original-title="Facebook"></a>
+                            </li>
+                            <li>
+                                <a class="fa fa-twitter box-icon" target="_blank" href="https://twitter.com/NASAOcean"
+                                    data-toggle="tooltip" title="" data-original-title="Twitter"></a>
+                            </li>
+                            <li>
+                                <a class="fa fa-instagram box-icon" target="_blank"
+                                    href="https://www.instagram.com/nasaocean/" data-toggle="tooltip" title=""
+                                    data-original-title="Instagram"></a>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div><!-- col-md-6 -->
+                <!-- <div class="col-md-6">
+                        <div class="copytext whats">
+                            <h2 style="text-align: center">What's New</h2>
+                            <ul class="newlist">
+                                <li><a href="events_more.htm?id=67"><span><span class="date">08-Dec-24</span><span
+                                                class="heading">2024 PACE Applications Workshop – Register
+                                                today!</span></span><span class="arrow-forward"><img
+                                                src="images/long-arrow.png" alt="" class="normal"><img
+                                                src="images/long-arrow-hover.png" alt="" class="hover"></span></a></li> -->
+                <!-- whatsNew item-->
+                <!-- <li><a href="blog.htm?id=26"><span><span class="date">25-Sep-24</span><span
+                                                class="heading">PACE Hosts First Hackathon</span></span><span
+                                            class="arrow-forward"><img src="images/long-arrow.png" alt=""
+                                                class="normal"><img src="images/long-arrow-hover.png" alt=""
+                                                class="hover"></span></a></li> -->
+                <!-- <li><a
+                                        href="https://blogs.nasa.gov/pace/2024/09/24/nasa-pilots-use-specialty-suits-to-validate-data/"><span><span
+                                                class="date">24-Sep-24</span><span class="heading">NASA Pilots Use
+                                                Specialty Suits to Validate Data</span></span><span
+                                            class="arrow-forward"><img src="images/long-arrow.png" alt=""
+                                                class="normal"><img src="images/long-arrow-hover.png" alt=""
+                                                class="hover"></span></a></li>
+                                <li><a
+                                        href="https://blogs.nasa.gov/pace/2024/08/27/stephen-broccardo-a-star-in-pace-data-collection/"><span><span
+                                                class="date">27-Aug-24</span><span class="heading">Stephen Broccardo: A
+                                                ‘STAR’ in PACE Data Collection</span></span><span
+                                            class="arrow-forward"><img src="images/long-arrow.png" alt=""
+                                                class="normal"><img src="images/long-arrow-hover.png" alt=""
+                                                class="hover"></span></a></li>
+                                <li><a href="events_more.htm?id=68"><span><span class="date">27-Aug-24</span><span
+                                                class="heading">ARSET – Intro to PACE Observations for Water Quality
+                                                Monitoring</span></span><span class="arrow-forward"><img
+                                                src="images/long-arrow.png" alt="" class="normal"><img
+                                                src="images/long-arrow-hover.png" alt="" class="hover"></span></a></li>
+                              -->
+                <!-- <li><a
+                                        href="https://blogs.nasa.gov/pace/2024/08/20/brice-grunert-the-great-campaign-of-the-great-lakes/"><span><span
+                                                class="date">21-Aug-24</span><span class="heading">Brice Grunert: The
+                                                Great Campaign of the Great Lakes</span></span><span
+                                            class="arrow-forward"><img src="images/long-arrow.png" alt=""
+                                                class="normal"><img src="images/long-arrow-hover.png" alt=""
+                                                class="hover"></span></a></li> -->
+                </ul>
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+
+    <div class="white-section">
+        <div class="container">
+            <h2>Engage with PACE</h2>
+            <div class="slider-items-holder responsive-row">
+
+                <div class="slider-item" style="background-image: url('Untitled\ design.png')">
+                    <div class="details">
+                        <h3>Exploring the Depths of PACE</h3>
+                    </div>
+                    <div class="slider-item-hover">
+                        <h4>Explore how light and color in the ocean and atmosphere affect marine ecosystems and climate
+                            through PACE.</h4>
+                        <a href="aboutpace.html" class="btn">Click to find out</a>
+                    </div>
+                </div>
+
+                <div class="slider-item" style="background-image: url('gme\ copy.jpeg')">
+                    <div class="details">
+                        <h3>Dive into the PACE Adventure!</h3>
+                    </div>
+                    <div class="slider-item-hover">
+                        <h4>Embark on an exciting journey with PACE, where you'll explore the ocean's mysteries- A Oceon
+                            Cleaning Game</h4>
+                        <a href="" class="btn">Click to find out</a>
+                    </div>
+                </div>
+
+                <div class="slider-item" style="background-image: url('game.webp')">
+                    <div class="details">
+                        <h3>Test Your Knowledge with PACE!</h3>
+                    </div>
+                    <div class="slider-item-hover">
+                        <h4>Challenge yourself with the PACE quiz and discover how much you know about ocean ecosystems
+                            and the vital role of phytoplankton!</h4>
+                        <a href="quiz1.html" class="btn">Click to find out</a>
+                    </div>
+                </div>
+
+                <div class="slider-item" style="background-image: url('3d.jpeg')">
+                    <div class="details">
+                        <h3>Step into the PACE 3D Learning !</h3>
+                    </div>
+                    <div class="slider-item-hover">
+                        <h4>Engage with PACE: Your 3D Learning Adventure!</h4>
+                        <a href="phytopia.htm" class="btn">Click to access</a>
+                    </div>
+                </div>
+
+
+
+                <!-- <div class="slider-item sl-eff" style="background-image: url('images/engage-with-pace-05.jpg')">
+                        <div class="details sl-eff">
+                            <h3 class="sl-eff">Access PACE data</h3>
+                        </div>
+                        <div class="slider-item-hover">
+                            <h4>Public PACE data release began on 11 April 2024</h4>
+                            <a href="/access_pace_data.htm" class="btn">Click to access</a>
+                        </div>
+                    </div> -->
+
+
+                <!-- <div class="slider-item" style="background-image: url('images/engage-with-pace-03.jpg')">
+                        <div class="details">
+                            <h3>Phytoplankton Exploration</h3>
+                        </div>
+                        <div class="slider-item-hover">
+                            <h4>Explore diverse species that are key to ocean health</h4>
+                            <a href="phytopia.htm" class="btn">Click to access</a>
+                        </div>
+                    </div> -->
+
+
+                <!-- <div class="slider-item" style="background-image: url('images/engage-with-pace-04.jpg')">
+                        <div class="details">
+                            <h3>Build Your Own PACE</h3>
+                        </div>
+                        <div class="slider-item-hover">
+                            <h4>Construct a paper model replica of PACE!</h4>
+                            <a href="paper_model.htm" class="btn">Click to access</a>
+                        </div>
+                    </div> -->
+
+                <!-- <div class="slider-item" style="background-image: url('images/coloring_page.jpg')">
+                        <div class="details">
+                            <h3>PACE Coloring Pages</h3>
+                        </div>
+                        <div class="slider-item-hover">
+                            <h4>Use our interactive coloring tool or download to print</h4>
+                            <a href="gallery.htm?id=coloring" class="btn">Click to access</a>
+                        </div>
+                    </div> -->
+
+                <!-- div class="slider-item" style="background-image: url('images/engage_pace_card_wavelength.png')"> -->
+                <!-- <div class="details">
+                  <h3>PACE By Wavelength</h3>
+                </div>
+                <div class="slider-item-hover">
+                  <h4>Magnify what PACE will see… by wavelength</h4>
+                  <a href="interactive.htm" class="btn">Click to access</a>
+                </div>
+              </div> -->
+
+                <!-- <div class="slider-item" style="background-image: url('images/ocean_color_images.jpg')">
+                <div class="details">
+                  <h3>Ocean Color images</h3>
+                </div>
+                <div class="slider-item-hover">
+                  <h4>Find amazing images by topic, place or sensor</h4>
+                  <a href="ocean_color_gallery.htm" class="btn">Click to access</a>
+                </div>
+              </div> -->
+
+
+            </div>
+        </div>
+    </div>
+
+    <!-- <div class="tabs-section">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-md-6">
+                        <ul class="tabs-row">
+                            <li class="active">
+                                <div class="image-holder topread1 scalled"><img src="logo.png" alt=""></div>
+                            </li>
+                            <li>
+                                <div class="image-holder topread2 scalled"><img src="images/tabs-02.png" alt=""></div>
+                            </li>
+                            <li>
+                                <div class="image-holder topread3 scalled"><img src="images/tabs-03.png" alt=""></div>
+                            </li>
+                            <li>
+                                <div class="image-holder topread4 scalled"><img src="images/tabs-04.png" alt=""></div>
+                            </li>
+                            <li>
+                                <div class="image-holder topread5 scalled"><img src="images/tabs-05.png" alt=""></div>
+                            </li>
+                            <li>
+                                <div class="image-holder topread6 scalled"><img src="images/tabs-06.png" alt=""></div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6">
+                        <ul class="tabs-content">
+                            <li class="active">
+                                <div class="copytext">
+                                    <h2>Why Do We Need PACE?</h2>
+                                    <h3>Ocean Ecology</h3>
+                                    <p>Our ocean teems with life and many of its most vital species are invisible to us.
+                                        Like on land, the ocean has deserts, forests, meadows, and jungles, providing
+                                        habitats for many forms of life. The types of life in these habitats is
+                                        determined by microscopic algae that float in our ocean. Known as
+                                        "phytoplankton," these tiny organisms come in many different shapes, sizes, and
+                                        colors. The diversity of phytoplankton types determines the roles they play in
+                                        ocean habitats. It also determines how well they capture energy from the sun and
+                                        carbon from the atmosphere.</p>
+                                    <a href="#" title="Read about ocean ecology" class="btn btn-white btnRead"
+                                        data-toggle="collapse" data-target="#read1">Read More</a>
+
+                                </div>
+                            </li>
+                            <li>
+                                <div class="copytext">
+                                    <h2>Why Do We Need PACE?</h2>
+                                    <h3>Aerosols & Clouds</h3>
+                                    <p>Small particles suspended in the atmosphere are known as aerosols. Along with
+                                        clouds, they affect how sunlight is reflected and absorbed by the Earth and its
+                                        atmosphere. Aerosols and clouds can interact in complex ways, which are not well
+                                        understood. For example, cloud drops can form on aerosols and aerosols can be
+                                        washed out of the air by rain. The overall effect of aerosols and clouds on
+                                        climate is quite uncertain.</p>
+                                    <a href="#" title="Read about Aerosols & Clouds" class="btn btn-white btnRead"
+                                        data-toggle="collapse" data-target="#read2">Read More</a>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="copytext">
+                                    <h2>Why Do We Need PACE?</h2>
+                                    <h3>Carbon</h3>
+                                    <p>Carbon exists in forms that range from invisible gases to diamonds. Most life on
+                                        earth is composed of carbon, as well. In the ocean, a system of physical and
+                                        biological processes drives the transition between forms of carbon. This system
+                                        supports life and regulates our planet's livable environment. A key process in
+                                        the carbon system is photosynthesis and its key players are phytoplankton. These
+                                        tiny plants and algae convert carbon dioxide gas into organic matter. This
+                                        organic matter, in turn, supplies food and energy to most life forms in the food
+                                        web.</p>
+                                    <a href="#" title="Read about carbon" class="btn btn-white btnRead"
+                                        data-toggle="collapse" data-target="#read3">Read More</a>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="copytext">
+                                    <h2>Why Do We Need PACE?</h2>
+                                    <h3>Applied Sciences</h3>
+                                    <p>The PACE mission will provide a combination of global atmospheric and oceanic
+                                        observations to benefit society in the areas of water resources, impact of
+                                        disasters, ecological forecasting, human health, and air quality. <br><br> PACE
+                                        Applications will partner with public and private organizations on ways to apply
+                                        data from PACE and its scientific findings in their decision-making activities
+                                        and services, helping to improve the quality of life and strengthen the economy.
+                                    </p>
+                                    <a href="#" title="Read about Applied Sciences" class="btn btn-white btnRead"
+                                        data-toggle="collapse" data-target="#read4">Read More</a>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="copytext">
+                                    <h2>Why Do We Need PACE?</h2>
+                                    <h3>Economy & Society</h3>
+                                    <p>The U.S. ocean economy contributes over $350B to the GDP (2014) and supports more
+                                        than 3.1 million jobs (one in 45). Currently, this ocean economy, including the
+                                        Great Lakes, is growing faster than the total U.S. economy in both contributions
+                                        to inflation-adjusted GDP (15.6% since 2007 compared to 5.8%) and jobs (8.1%
+                                        compared to flat).<br><br>
+                                        PACE will be the first mission to provide measurements that enable prediction of
+                                        the boom-bust of fisheries, the appearance of harmful algae, and other factors
+                                        that affect commercial and recreational industries.</p>
+                                    <a href="#" title="Read about Economy & Society" class="btn btn-white btnRead"
+                                        data-toggle="collapse" data-target="#read5">Read More</a>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="copytext inner-read">
+                                    <h2>Why Do We Need PACE?</h2>
+                                    <h3>Science Questions</h3>
+
+                                    <ul class="bullets outer-main" style="padding-left:18px;">
+                                        <li> How is Earth changing and what are the consequences for our living
+                                            resources and food webs, such as phytoplankton and plankton?</li>
+                                        <li> What is the concentration and composition of organisms in our ocean
+                                            ecosystems? How productive are our ocean ecosystems?</li>
+                                        <li> What are the long-term changes in aerosol and cloud properties that can be
+                                            continued to be revealed with PACE? How are these properties correlated with
+                                            variations in climate?</li>
+                                        <li> How are biological, geological, and chemical components of our ocean
+                                            changing and why? How might such changes influence the Earth system?</li>
+                                    </ul>
+                                    <a href="#" title="Read about Science Questions" class="btn btn-white btnRead"
+                                        data-toggle="collapse" data-target="#read6">Read More</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+
+
+                </div>
+            </div>
+        </div>
+        <div class="tabs-details">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div id="read1" class="collapse scale inner-read">
+                            <div class='spacer01'></div>
+                            <p>
+                                Phytoplankton provide food for small zooplankton, tiny animals that float in our ocean.
+                                Like humans, these grazers actively select their food. In the same way, larger
+                                zooplankton prey upon smaller zooplankton. Step by step, energy captured from
+                                phytoplankton transfers to bigger creatures. As the energy climbs the marine food web,
+                                it can ultimately be used by humans.<br /><br />
+                                The ocean is a fluid that is constantly in motion. Hosting the largest three-dimensional
+                                living space on earth, it supports many habitats. For example, the North Atlantic is
+                                home to highly productive "forests" each spring. Its blooms of carbon-rich phytoplankton
+                                fuel the fisheries of New England. The crystal-clear waters around Florida host
+                                productive coral reefs and fisheries. At times, however, this area is plagued by toxic
+                                phytoplankton.<br /><br />
+                                Today's satellites reveal the quantity of phytoplankton at the ocean surface. Yet we
+                                cannot detect the diversity of species. For the first time, PACE's unprecedented
+                                technology will:
+
+                            <ul class="bullets">
+                                <li> Reveal the diversity of phytoplankton found in our ocean on global scales;</li>
+                                <li> Allow us to understand the role that phytoplankton diversity has on life in the
+                                    ocean; and</li>
+                                <li> Help us predict the "boom or bust" of fisheries along with marine hazards such as
+                                    harmful algal blooms.</li>
+                            </ul>
+
+                            <br>Why do we need PACE? To understand how phytoplankton diversity impacts human life.
+                            </p>
+                        </div> 
+
+
+                        <div id="read2" class="collapse scale inner-read">
+                            <div class='spacer01'></div>
+
+                            Aerosols such as smoke, dust, salt and sulfate absorb and reflect different fractions of
+                            sunlight. Aerosol types and how they interact with clouds varies a great deal from place to
+                            place and over time. Thus, we need satellites to capture a complete and accurate picture of
+                            how much energy the Earth is absorbing from the sun.<br /><br />
+                            Aerosol data will not only be used to better understand our atmosphere but our ocean, as
+                            well. How? Most of the light that is seen by a satellite comes from the atmosphere and its
+                            aerosols. Only a small fraction of the light comes from the ocean. PACE will take this into
+                            account when deciphering its ocean color data. For PACE to accurately "see" the ocean, we
+                            must understand the aerosols present in the atmosphere.<br /><br />
+                            Aerosols and clouds control the amount of energy from the sun that is absorbed by the earth.
+                            PACE will:
+
+                            <ul class="bullets">
+                                <li>Determine how many aerosols there are around the globe;</li>
+                                <li>Provide new insight into aerosol properties;</li>
+                                <li>Monitor cloud properties, and the interaction between aerosols and clouds; and
+                                    therefore</li>
+                                <li>Observe fundamental components of our global climate.</li>
+                            </ul>
+
+                        </div> 
+
+
+                        <div id="read3" class="collapse scale inner-read">
+                            <div class='spacer01'></div>
+
+                            In many ways, the types of phytoplankton in our ocean dictate carbon pathways. Like falling
+                            leaves in autumn, larger phytoplankton species can sink from the ocean surface to the sea
+                            floor. This process can effectively remove carbon from contact with the atmosphere. Many
+                            types of phytoplankton serve as nourishing food sources for zooplankton, tiny animals that
+                            float in our ocean. Some of the carbon captured by zooplankton is returned to the atmosphere
+                            through respiration. Some carbon is exported to the deeper ocean when zooplankton migrate at
+                            night or when they excrete feces. Also, many zooplankton release dissolved carbon in
+                            partially eaten food. Marine bacteria, another type of plankton, use this dissolved carbon
+                            as an energy source. In doing so, they convert dissolved carbon back into its gaseous
+                            form.<br /><br />
+                            The examples above show that carbon pathways are many and diverse. Even small changes in the
+                            ocean ecosystem can push carbon towards another route. Detecting the diversity of plankton
+                            will help us understand how carbon moves between the ocean and atmosphere.<br /><br />
+                            Today's satellites reveal the quantity of phytoplankton at the ocean surface. Yet we cannot
+                            detect the diversity of species. For the first time, PACE's unprecedented technology will:
+
+                            <ul class="bullets">
+                                <li>Reveal the diversity of phytoplankton found in our ocean on global scales;</li>
+                                <li>Allow us to understand the role that phytoplankton diversity has on carbon cycling
+                                    in the ocean; and</li>
+                                <li>Help us predict the routes that carbon will take in today's ocean and tomorrow's.
+                                </li>
+                            </ul>
+
+                        </div> 
+
+                        <div id="read4" class="collapse scale inner-read">
+                            <div class='spacer01'></div>
+
+                            The PACE mission will provide a combination of global atmospheric and oceanic observations
+                            to benefit society in the areas of <em>water resources, impact of disasters, ecological
+                                forecasting, human health, </em>and <em>air quality.</em><br /><br />
+                            PACE Applications will partner with public and private organizations on ways to apply data
+                            from PACE and its scientific findings in their decision-making activities and services,
+                            helping to improve the quality of life and strengthen the economy.<br />
+
+                            PACE observations will benefit a broad spectrum of people, including:
+                            <ul class="bullets">
+                                <li>Operational users in various tribal, local, state, federal, and international
+                                    agencies</li>
+                                <li>Policy implementers</li>
+                                <li>Commercial sector</li>
+                                <li>Scientists</li>
+                                <li>Educators</li>
+                                <li>General public</li>
+                            </ul>
+
+                        </div> 
+
+                        <div id="read5" class="collapse scale inner-read">
+                            <div class='spacer01'></div>
+                            While current satellites provide essential tools for monitoring the ocean, coasts, and Great
+                            Lakes, they cannot effectively be used to evaluate changes to fisheries or identify harmful
+                            algae. Without PACE, we will continue to be blind to the impacts of diversity changes in our
+                            marine resources.<br><br>
+                            PACE will also observe clouds and microscopic airborne particles known as aerosols that
+                            scatter and absorb sunlight. Industry, the Department of Defense, NOAA, policy makers, and
+                            scientists all rely on these key data for weather, visibility, and air quality forecasts.
+                            Observing the ocean, clouds, and aerosols together will reveal previously unseen
+                            interactions, including their exchange of carbon dioxide, how some aerosols can fuel
+                            phytoplankton blooms, and how phytoplankton can release particles to the atmosphere that
+                            lead to the formation of clouds. These processes affect how much heat is trapped by Earth's
+                            atmosphere and are vital to accurately predict weather and climate.<br /><br />
+                            Example PACE user communities:
+
+                            <ul class="bullets">
+                                <li>Natural and coastal resource managers focused on water quality for human health,
+                                    commercial fishing, and disaster management</li>
+                                <li>Researchers and Earth modelers in the fields of ocean
+                                    biology-ecology-biogeochemistry, atmospheric aerosols, and clouds</li>
+                                <li>Military users of ocean optical data for environment characterization and clouds and
+                                    aerosol data for weather and visibility forecasts for regions of operations</li>
+                                <li>Government agencies who will use this data to manage fisheries and to determine
+                                    human health predictors including air and water quality</li>
+                                <li>Renewable energy and commercial sectors with interest in environmental technology
+                                    development, resources management tools, and environmental forecasting</li>
+                                <li>Educators of the general public</li>
+                                <li>Policy makers and economists at local, state, regional, tribal, federal, and
+                                    international levels</li>
+                            </ul>
+
+                            <br><a href="/docs/pace_economy_society.pdf"
+                                style="color: #FFF; font-size: 21px; text-decoration: underline;"
+                                title="Brochure: What Color is the Ocean? (PDF, 8.8MB)">Download PDF to learn more.</a>
+
+                        </div> 
+
+                        <div id="read6" class="collapse scale inner-read">
+                            <div class='spacer01'></div>
+
+                            <ul class="bullets" style="margin-left:18px;">
+                                <li>What materials are exchanged between the land and ocean? How do these exchanges
+                                    affect life on our coasts?</li>
+                                <li>How do tiny airborne particles and liquids &ndash; known as "aerosols" &ndash;
+                                    influence ocean ecosystems and cycling of matter in our ocean?</li>
+                                <li>Conversely, how do ocean processes affect our atmosphere?</li>
+                                <li>How does our ocean's environment &ndash; and motion &ndash; affect its ecosystems
+                                    and vice versa?</li>
+                                <li>What is the distribution of both harmful and beneficial algal blooms? How are these
+                                    blooms related to environmental forces?</li>
+                                <li>How do changes in critical ocean ecosystem services affect people's health and
+                                    welfare? How do human activities affect ocean ecosystems and services?</li>
+                            </ul>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="white-section latest-news">
+            <div class="container">
+                <h2>Our Latest News</h2>
+                <div class="latest-news-holder responsive-row">
+                    <div class="news-col">
+                        <div class="image-holder scalled"><a><img src="images/oman_pace_20240317.jpg" alt=""></a></div>
+                        <div class="news-title"><span class="date">08-May-24</span>
+                            <h2><a
+                                    href="https://earthobservatory.nasa.gov/images/152765/complex-beauty-in-the-gulf-of-oman">Complex
+                                    Beauty in the Gulf of Oman</a></h2>
+                        </div>
+                        <div class="news-exerpt">
+                            <p>On February 8, 2024, NASA’s PACE satellite roared into space aboard a SpaceX Falcon 9
+                                rocket. Less than two months later, NASA engineer Joseph ...</p><a
+                                href="https://earthobservatory.nasa.gov/images/152765/complex-beauty-in-the-gulf-of-oman"
+                                class="normal-btn">Read More</a>
+                        </div>
+                    </div> 
+                    <div class="news-col">
+                        <div class="image-holder scalled"><a><img src="images/orca-team_800x600.jpg" alt=""></a></div>
+                        <div class="news-title"><span class="date">26-Apr-24</span>
+                            <h2><a
+                                    href="https://www.nasa.gov/missions/pace/nasas-orca-airharp-projects-paved-way-for-pace-to-reach-space/">NASA’s
+                                    ORCA, AirHARP Projects Paved Way for PACE to Reach Space</a></h2>
+                        </div>
+                        <div class="news-exerpt">
+                            <p>In the early 2000s, a team of scientists at NASA’s Goddard Space Flight Center in
+                                Greenbelt, Maryland, prototyped the Ocean Radiometer for ...</p><a
+                                href="https://www.nasa.gov/missions/pace/nasas-orca-airharp-projects-paved-way-for-pace-to-reach-space/"
+                                class="normal-btn">Read More</a>
+                        </div>
+                    </div> 
+                    <div class="news-col">
+                        <div class="image-holder scalled"><a><img src="images/near_space_network_pace_800x600.jpg"
+                                    alt=""></a></div>
+                        <div class="news-title"><span class="date">17-Apr-24</span>
+                            <h2><a
+                                    href="https://www.nasa.gov/technology/space-comms/nasas-near-space-network-enables-pace-climate-mission-to-phone-home/">NASA’s
+                                    Near Space Network Enables PACE Climate Mission to ‘Phone Home’</a></h2>
+                        </div>
+                        <div class="news-exerpt">
+                            <p>The PACE mission has delivered its first operational data back to researchers, a feat
+                                made possible in part by innovative, data-storing technology ...</p><a
+                                href="https://www.nasa.gov/technology/space-comms/nasas-near-space-network-enables-pace-climate-mission-to-phone-home/"
+                                class="normal-btn">Read More</a>
+                        </div>
+                    </div> 
+                    <div class="news-col">
+                        <div class="image-holder scalled"><a><img src="images/pace_first_light_composite_800x600.png"
+                                    alt=""></a></div>
+                        <div class="news-title"><span class="date">11-Apr-24</span>
+                            <h2><a
+                                    href="https://www.nasa.gov/earth/nasas-pace-data-on-ocean-atmosphere-climate-now-available/">NASA’s
+                                    PACE Data on Ocean, Atmosphere, Climate Now Available</a></h2>
+                        </div>
+                        <div class="news-exerpt">
+                            <p>NASA is now publicly distributing science-quality data from PACE, providing
+                                first-of-their-kind measurements of ocean health, air quality, ...</p><a
+                                href="https://www.nasa.gov/earth/nasas-pace-data-on-ocean-atmosphere-climate-now-available/"
+                                class="normal-btn">Read More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="viewmore-btn">
+                <a href="news.htm" class="btn white">View More</a>
+            </div>
+
+        </div>
+
+        <div class="gray-bg-section">
+            <div class="container">
+                <h2>PACE StoryMaps & E-brochures</h2>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="pace-story">
+                            <div class="image-holder scalled"><a href='storymaps.htm?id=2198'
+                                    title='Heating Up (and Down) the Ocean Food Web'>
+                                    <img src='/images/heating_ocean_food_web_400x300.png' alt=''></a>
+                            </div>
+                            <div class="story">
+                                <h2><a href='storymaps.htm?id=2198' title='Heating Up (and Down) the Ocean Food Web'>
+                                        Heating Up (and Down) the Ocean Food Web</a></h2>
+                                <p>Marine heatwaves impact ocean life from whales to phytoplankton</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="pace-story">
+                            <div class="image-holder scalled"><a href='storymaps.htm?id=2199'
+                                    title='Look Into PACE Data Products'>
+                                    <img src='/images/pace_data_products_400x300.jpg' alt=''></a>
+                            </div>
+                            <div class="story">
+                                <h2><a href='storymaps.htm?id=2199' title='Look Into PACE Data Products'>
+                                        Look Into PACE Data Products</a></h2>
+                                <p>Expanding our understanding of Earth's climate</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="pace-story">
+                            <div class="image-holder scalled"><a href='storymaps.htm?id=2185'
+                                    title='PACE "First Light" Gallery'>
+                                    <img src='/images/pace_first_light_gallery_card_400x300.jpg' alt=''></a>
+                            </div>
+                            <div class="story">
+                                <h2><a href='storymaps.htm?id=2185' title='PACE "First Light" Gallery'>
+                                        PACE "First Light" Gallery</a></h2>
+                                <p>Take a global tour of PACE's Ocean Color Instrument (OCI) images!</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="pace-story">
+                            <div class="image-holder scalled"><a href='storymaps.htm?id=2096' title='Air (E)quality'>
+                                    <img src='/images/ea_marcela_loria_thm_400x300.jpg' alt=''></a>
+                            </div>
+                            <div class="story">
+                                <h2><a href='storymaps.htm?id=2096' title='Air (E)quality'>
+                                        Air (E)quality</a></h2>
+                                <p>PACE can help improve forecasts&#8230; no matter where you live</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="pace-story">
+                            <div class="image-holder scalled"><a href='storymaps.htm?id=2094' title='A World in Water'>
+                                    <img src='/images/world_in_water_card_400x300.jpg' alt=''></a>
+                            </div>
+                            <div class="story">
+                                <h2><a href='storymaps.htm?id=2094' title='A World in Water'>
+                                        A World in Water</a></h2>
+                                <p>PACE is designed to ID phytoplankton communities from space</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="pace-story">
+                            <div class="image-holder scalled"><a href='storymaps.htm?id=2089'
+                                    title='Life & Water Level'>
+                                    <img src='/images/life_water_level_400w_300h.jpg' alt=''></a>
+                            </div>
+                            <div class="story">
+                                <h2><a href='storymaps.htm?id=2089' title='Life & Water Level'>
+                                        Life & Water Level</a></h2>
+                                <p>Sensational synergies between NASA missions</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="pace-story">
+                            <div class="image-holder scalled"><a href='storymaps.htm?id=2087'
+                                    title='The Saga of Sargassum'>
+                                    <img src='/images/sargassum_storymap_400x300.jpg' alt=''></a>
+                            </div>
+                            <div class="story">
+                                <h2><a href='storymaps.htm?id=2087' title='The Saga of Sargassum'>
+                                        The Saga of Sargassum</a></h2>
+                                <p>These “small grapes” can cause big problems</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="pace-story">
+                            <div class="image-holder scalled"><a href='storymaps.htm?id=1920'
+                                    title='PACE Supports the UN Ocean Decade'>
+                                    <img src='/images/pace_un.jpg' alt=''></a>
+                            </div>
+                            <div class="story">
+                                <h2><a href='storymaps.htm?id=1920' title='PACE Supports the UN Ocean Decade'>
+                                        PACE Supports the UN Ocean Decade</a></h2>
+                                <p>How PACE aligns with this effort</p>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+            <div class="viewmore-btn">
+                <a href="gallery.htm?id=storymap" class="btn">View More</a>
+            </div>
+        </div>
+
+        <div class="white-section nopadding-desktop">
+            <div class="container">
+                <h2>Learn More</h2>
+                <div class="flipboxes-row responsive-row">
+
+
+                    <div class="flip-box">
+                        <div class="flip-box-inner">
+                            <div class="flip-box-front">
+                                <div class="background-image scalled"><img src="images/learn-more-01.jpg" alt=""></div>
+                                <div class="icon scalled"><img src="images/learn-more-05.jpg" alt=""></div>
+                                <h2>Aerosols & Clouds</h2>
+                                <p>Connecting aerosols, clouds, and climate</p>
+                                <div class="readmore"><a href="learn_aerosols_clouds.htm" class="normal-btn">Read
+                                        More</a></div>
+                            </div>
+                            <div class="flip-box-back">
+                                <div class="background-image "><a href="learn_aerosols_clouds.htm"><img
+                                            src="images/flip-01.png" alt=""></a></div>
+                                <p><a href="learn_aerosols_clouds.htm">Explore the complex interactions between clouds,
+                                        aerosols, and the ocean and how they impact Earth's climate</a></p>
+                                <div class="readmore">
+                                    <div class="social-links">
+                                        <span style="white-space: nowrap"><a href="learn_aerosols_clouds.htm"
+                                                class="normal-btn"><i class="fas fa-seedling" style="color:#44A053;"
+                                                    aria-hidden="true"></i> Aerosols & Clouds »</a></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flip-box">
+                        <div class="flip-box-inner">
+                            <div class="flip-box-front">
+                                <div class="background-image scalled"><img src="images/learn-more-02.jpg" alt=""></div>
+                                <div class="icon scalled"><img src="images/learn-more-06.jpg" alt=""></div>
+                                <h2>Ocean Ecology</h2>
+                                <p>The ocean's health starts with phytoplankton</p>
+                                <div class="readmore"><a href="learn_ecology.htm" class="normal-btn">Read More</a></div>
+                            </div>
+                            <div class="flip-box-back">
+                                <div class="background-image "><a href="learn_ecology.htm"><img src="images/flip-02.png"
+                                            alt=""></a></div>
+                                <p><a href="learn_ecology.htm">Explore the base of the marine food web and how PACE will
+                                        identify these microscopic plants from space!</a></p>
+                                <div class="readmore">
+                                    <div class="social-links">
+                                        <span style="white-space: nowrap"><a href="learn_ecology.htm"><i
+                                                    class="fas fa-palette" style="color:#44A053;"
+                                                    aria-hidden="true"></i> Ocean Ecology »</a></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                <div class="flip-box">
+                        <div class="flip-box-inner">
+                            <div class="flip-box-front">
+                                <div class="background-image scalled"><img src="images/learn-more-03.jpg" alt=""></div>
+                                <div class="icon scalled"><img src="images/learn-more-07.jpg" alt=""></div>
+                                <h2>Ocean Color</h2>
+                                <p>Beyond the rainbow: going hyperspectral</p>
+                                <div class="readmore"><a href="learn_color.htm" class="normal-btn">Read More</a></div>
+                            </div>
+                            <div class="flip-box-back">
+                                <div class="background-image "><a href="learn_color.htm"><img src="images/flip-03.png"
+                                            alt=""></a></div>
+                                <p><a href="learn_color.htm">Explore the colors of the ocean from ultraviolet to
+                                        infrared and all the visible bands between</a></p>
+                                <div class="readmore">
+                                    <div class="social-links">
+                                        <span style="white-space: nowrap"><a href="learn_color.htm"><i
+                                                    class="fas fa-satellite" style="color:#44A053;"
+                                                    aria-hidden="true"></i> Ocean Color »</a></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flip-box">
+                        <div class="flip-box-inner">
+                            <div class="flip-box-front">
+                                <div class="background-image scalled"><img src="images/learn-more-04.jpg" alt=""></div>
+                                <div class="icon scalled"><img src="images/learn-more-08.jpg" alt=""></div>
+                                <h2>Instruments</h2>
+                                <p>Shedding new light on our ocean and atmosphere through advanced technology</p>
+                                <div class="readmore"><a href="learn_instruments.htm" class="normal-btn">Read More</a>
+                                </div>
+                            </div>
+                            <div class="flip-box-back">
+                                <div class="background-image "><a href="learn_instruments.htm"><img
+                                            src="images/flip-05.png" alt=""></a></div>
+                                <p><a href="learn_instruments.htm">Explore the state-of-the-art instrumentation that
+                                        will revolutionize the way we see our ocean and atmosphere</a></p>
+                                <div class="readmore">
+                                    <div class="social-links">
+                                        <span style="white-space: nowrap"><a href="learn_instruments.htm"><i
+                                                    class="fab fa-cloudversify" style="color:#44A053;"
+                                                    aria-hidden="true"></i> Instruments »</a></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+    <!-- <div class="white-section nopadding-desktop">
+        <div class="container">
+            <h2>Learn More</h2>
+            <div class="flipboxes-row responsive-row">
+
+
+                <div class="flip-box">
+                    <div class="flip-box-inner">
+                        <div class="flip-box-front">
+                            <div class="background-image scalled"><img src="images/learn-more-01.jpg" alt=""></div>
+                            <div class="icon scalled"><img src="images/learn-more-05.jpg" alt=""></div>
+                            <h2>Aerosols & Clouds</h2>
+                            <p>Connecting aerosols, clouds, and climate</p>
+                            <div class="readmore"><a href="learn_aerosols_clouds.htm" class="normal-btn">Read
+                                    More</a></div>
+                        </div>
+                        <div class="flip-box-back">
+                            <div class="background-image "><a href="learn_aerosols_clouds.htm"><img
+                                        src="images/flip-01.png" alt=""></a></div>
+                            <p><a href="learn_aerosols_clouds.htm">Explore the complex interactions between clouds,
+                                    aerosols, and the ocean and how they impact Earth's climate</a></p>
+                            <div class="readmore">
+                                <div class="social-links">
+                                    <span style="white-space: nowrap"><a href="learn_aerosols_clouds.htm"
+                                            class="normal-btn"><i class="fas fa-seedling" style="color:#44A053;"
+                                                aria-hidden="true"></i> Aerosols & Clouds »</a></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flip-box">
+                    <div class="flip-box-inner">
+                        <div class="flip-box-front">
+                            <div class="background-image scalled"><img src="images/learn-more-02.jpg" alt=""></div>
+                            <div class="icon scalled"><img src="images/learn-more-06.jpg" alt=""></div>
+                            <h2>Ocean Ecology</h2>
+                            <p>The ocean's health starts with phytoplankton</p>
+                            <div class="readmore"><a href="learn_ecology.htm" class="normal-btn">Read More</a></div>
+                        </div>
+                        <div class="flip-box-back">
+                            <div class="background-image "><a href="learn_ecology.htm"><img src="images/flip-02.png"
+                                        alt=""></a></div>
+                            <p><a href="learn_ecology.htm">Explore the base of the marine food web and how PACE will
+                                    identify these microscopic plants from space!</a></p>
+                            <div class="readmore">
+                                <div class="social-links">
+                                    <span style="white-space: nowrap"><a href="learn_ecology.htm"><i
+                                                class="fas fa-palette" style="color:#44A053;" aria-hidden="true"></i>
+                                            Ocean Ecology »</a></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flip-box">
+                    <div class="flip-box-inner">
+                        <div class="flip-box-front">
+                            <div class="background-image scalled"><img src="images/learn-more-03.jpg" alt=""></div>
+                            <div class="icon scalled"><img src="images/learn-more-07.jpg" alt=""></div>
+                            <h2>Ocean Color</h2>
+                            <p>Beyond the rainbow: going hyperspectral</p>
+                            <div class="readmore"><a href="learn_color.htm" class="normal-btn">Read More</a></div>
+                        </div>
+                        <div class="flip-box-back">
+                            <div class="background-image "><a href="learn_color.htm"><img src="images/flip-03.png"
+                                        alt=""></a></div>
+                            <p><a href="learn_color.htm">Explore the colors of the ocean from ultraviolet to
+                                    infrared and all the visible bands between</a></p>
+                            <div class="readmore">
+                                <div class="social-links">
+                                    <span style="white-space: nowrap"><a href="learn_color.htm"><i
+                                                class="fas fa-satellite" style="color:#44A053;" aria-hidden="true"></i>
+                                            Ocean Color »</a></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flip-box">
+                    <div class="flip-box-inner">
+                        <div class="flip-box-front">
+                            <div class="background-image scalled"><img src="images/learn-more-04.jpg" alt=""></div>
+                            <div class="icon scalled"><img src="images/learn-more-08.jpg" alt=""></div>
+                            <h2>Instruments</h2>
+                            <p>Shedding new light on our ocean and atmosphere through advanced technology</p>
+                            <div class="readmore"><a href="learn_instruments.htm" class="normal-btn">Read More</a>
+                            </div>
+                        </div>
+                        <div class="flip-box-back">
+                            <div class="background-image "><a href="learn_instruments.htm"><img src="images/flip-05.png"
+                                        alt=""></a></div>
+                            <p><a href="learn_instruments.htm">Explore the state-of-the-art instrumentation that
+                                    will revolutionize the way we see our ocean and atmosphere</a></p>
+                            <div class="readmore">
+                                <div class="social-links">
+                                    <span style="white-space: nowrap"><a href="learn_instruments.htm"><i
+                                                class="fab fa-cloudversify" style="color:#44A053;"
+                                                aria-hidden="true"></i> Instruments »</a></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> -->
+
+
+    <section class="ocean-ecology">
+        <div class="container">
+            <h1>WHY DO WE NEED PACE?</h1>
+            <div class="content">
+                <div class="images">
+                    <div class="circle" data-info="earth">
+                        <img src="carbon.jpeg" alt="Earth Image">
+
+                    </div>
+                    <div class="circle" data-info="clouds">
+                        <img src="phytoplankton.jpg" alt="Clouds Image">
+                    </div>
+                    <div class="circle" data-info="phytoplankton">
+                        <img src="aerosal.png" alt="Phytoplankton Image">
+                    </div>
+                    <div class="circle" data-info="scientists">
+                        <img src="Algal Bloom.jpg" alt="Scientists Image">
+                    </div>
+                    <div class="circle" data-info="ocean">
+                        <img src="Environmental Monitoring.jpg" alt="Ocean Image">
+                    </div>
+                    <div class="circle question-mark" data-info="unknown">
+                        <img src="resourse.jpeg" alt="Ocean Image">
+
+                    </div>
+                </div>
+                <div class="text-section">
+
+                    <div id="info-container">
+                        <p id="earth-info" class="info-text">
+                            <b>Carbon Dynamics</b>: PACE enhances our understanding of how carbon dioxide is exchanged
+                            between
+                            the ocean and atmosphere. By monitoring these dynamics, we can better assess the ocean's
+                            role in climate change. This knowledge is crucial for developing effective mitigation
+                            strategies.
+                        </p>
+
+                        <p id="clouds-info" class="info-text"><b>Phytoplankton Health</b>:
+                            PACE provides insights into the populations and
+                            health of phytoplankton, the foundation of the marine food web. Monitoring these organisms
+                            helps us understand their role in carbon sequestration and ocean productivity. Healthy
+                            phytoplankton are vital for sustaining marine ecosystems.</p>
+                        <p id="clouds-info" class="info-text"><b>Aerosol Effects</b>:
+                            PACE investigates how aerosols influence marine ecosystems, particularly their role in
+                            nutrient supply for phytoplankton growth. Understanding these interactions is essential for
+                            assessing air-sea exchanges and their impact on climate. This knowledge aids in predicting
+                            ecological responses to atmospheric changes</p>
+                        <p id="clouds-info" class="info-text"><b>Algal Bloom Tracking</b>:
+                            The mission aids in identifying and monitoring harmful algal blooms, which can disrupt
+                            marine ecosystems and pose health risks to humans. By providing timely data, PACE helps
+                            authorities take preventive actions. Effective monitoring can minimize the economic impact
+                            of these blooms on fisheries and tourism.</p>
+                        <p id="clouds-info" class="info-text"><b>Environmental Monitoring</b>:
+                            PACE extends NASA's capabilities for long-term monitoring of Earth's oceans. This continuous
+                            data collection is essential for understanding trends in climate and ecological health over
+                            time. It supports informed decision-making for environmental policy and conservation
+                            efforts.</p>
+                        <p id="clouds-info" class="info-text"><b>Resource Management</b>:
+                            By delivering critical data about marine ecosystems, PACE supports sustainable fisheries and
+                            marine resource management. The insights gained can help balance ecological health with
+                            human activity. Informed management strategies are essential for preserving marine
+                            biodiversity and ensuring resource availability..</p>
+
+
+                    </div>
+                    <!-- <a href="#" class="read-more" id="learn-more" style="display: none;">Learn More</a> -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- <div class="white-section">
+        <div class="container">
+            <h2>Media Gallery</h2>
+            <div class="media-gallery-row responsive-row">
+                <div class="gallery-col">
+                    <div class="image-holder scalled"><a href='https://www.youtube.com/watch?v=PZLQZsOwyWA'
+                            class='video-overlay html5lightbox' data-showsocial='false' data-transition='crossfade'
+                            title='PACE Fanfare & Launch!'><img src="images/pace_fanfare_launch_400x300.png"
+                                alt="PACE Fanfare & Launch!"></a></div>
+                    <div class="details">
+                        <div class="title-and-date" style="width:100%"><span></span>
+                            <h2><a href="gallery_more.htm?id=2200">PACE Fanfare & Launch!</a></h2>
+                        </div>
+                        <div class="arrow-btn"><a href="gallery_more.htm?id=2200"><img src="images/long-arrow.png"
+                                    alt=""></a></div>
+                    </div>
+                </div>
+                <div class="gallery-col">
+                    <div class="image-holder scalled"><a href='https://svs.gsfc.nasa.gov/14579/' class='html5lightbox'
+                            data-showsocial='false' data-transition='crossfade' title=' Credit: NASA'>
+                            <img src="images/data_to_image_400x300.png" alt="From PACE Data to Image"></a></div>
+                    <div class="details">
+                        <div class="title-and-date" style="width:100%"><span></span>
+                            <h2><a href="gallery_more.htm?id=2191">From PACE Data to Image</a></h2>
+                        </div>
+                        <div class="arrow-btn"><a href="gallery_more.htm?id=2191"><img src="images/long-arrow.png"
+                                    alt=""></a></div>
+                    </div>
+                </div>
+                <div class="gallery-col">
+                    <div class="image-holder scalled"><a href='https://svs.gsfc.nasa.gov/5259/' class='html5lightbox'
+                            data-showsocial='false' data-transition='crossfade' title=' Credit: NASA'>
+                            <img src="images/first_light_oci_harp2_spexone_400x300.png"
+                                alt="PACE - First Look at OCI, HARP2, and SPEXone data"></a></div>
+                    <div class="details">
+                        <div class="title-and-date" style="width:100%"><span></span>
+                            <h2><a href="gallery_more.htm?id=2190">PACE - First Look at OCI, HARP2, and SPEXone
+                                    data</a></h2>
+                        </div>
+                        <div class="arrow-btn"><a href="gallery_more.htm?id=2190"><img src="images/long-arrow.png"
+                                    alt=""></a></div>
+                    </div>
+                </div>
+                <div class="gallery-col">
+                    <div class="image-holder scalled"><a
+                            href='https://science.nasa.gov/earth/earth-day/earth-day-poster-2024/' class='html5lightbox'
+                            data-showsocial='false' data-transition='crossfade' title=' Credit: NASA'>
+                            <img src="images/water_touches_everything_400x300.jpg" alt="Water Touches Everything"></a>
+                    </div>
+                    <div class="details">
+                        <div class="title-and-date" style="width:100%"><span></span>
+                            <h2><a href="gallery_more.htm?id=2189">Water Touches Everything</a></h2>
+                        </div>
+                        <div class="arrow-btn"><a href="gallery_more.htm?id=2189"><img src="images/long-arrow.png"
+                                    alt=""></a></div>
+                    </div>
+                </div> -->
+    <!-- <div class="gallery-col">
+                        <div class="image-holder scalled"><a href='https://svs.gsfc.nasa.gov/14567'
+                                class='html5lightbox' data-showsocial='false' data-transition='crossfade'
+                                title=' Credit: NASA'>
+                                <img src="images/our_oceans_from_space_400x300.jpg" alt="Our Oceans From Space"></a>
+                        </div> -->
+    <!-- <div class="details">
+                            <div class="title-and-date" style="width:100%"><span></span>
+                                <h2><a href="gallery_more.htm?id=2188">Our Oceans From Space</a></h2>
+                            </div>
+                            <div class="arrow-btn"><a href="gallery_more.htm?id=2188"><img src="images/long-arrow.png"
+                                        alt=""></a></div>
+                        </div>
+                    </div> -->
+    <!-- <div class="gallery-col">
+                        <div class="image-holder scalled"><a href="images/pace_first_light_composite.png" class="fresco"
+                                title="PACE " First Light" Composite"><img
+                                    src="images/pace_first_light_composite_800x600.png" alt="PACE " First Light"
+                                    Composite"></a></div>
+                        <div class="details">
+                            <div class="title-and-date" style="width:100%"><span></span>
+                                <h2><a href="gallery_more.htm?id=2183">PACE "First Light" Composite</a></h2>
+                            </div>
+                            <div class="arrow-btn"><a href="gallery_more.htm?id=2183"><img src="images/long-arrow.png"
+                                        alt=""></a></div>
+                        </div>
+                    </div> -->
+    <!-- <div class="gallery-col">
+                        <div class="image-holder scalled"><a href="images/pace_first_light_oci.png" class="fresco"
+                                title="PACE " First Light" – Ocean Color Instrument (OCI)"><img
+                                    src="images/pace_first_light_oci_800x600.png" alt="PACE " First Light" – Ocean Color
+                                    Instrument (OCI)"></a></div>
+                        <div class="details">
+                            <div class="title-and-date" style="width:100%"><span></span>
+                                <h2><a href="gallery_more.htm?id=2184">PACE "First Light" – Ocean Color Instrument
+                                        (OCI)</a></h2>
+                            </div>
+                            <div class="arrow-btn"><a href="gallery_more.htm?id=2184"><img src="images/long-arrow.png"
+                                        alt=""></a></div>
+                        </div>
+                    </div>
+                    <div class="gallery-col">
+                        <div class="image-holder scalled"><a href="images/pace_first_light_spexone.png" class="fresco"
+                                title="PACE " First Light" – SPEXone"><img
+                                    src="images/pace_first_light_spexone_800x600.png" alt="PACE " First Light" –
+                                    SPEXone"></a></div>
+                        <div class="details">
+                            <div class="title-and-date" style="width:100%"><span></span>
+                                <h2><a href="gallery_more.htm?id=2186">PACE "First Light" – SPEXone</a></h2>
+                            </div>
+                            <div class="arrow-btn"><a href="gallery_more.htm?id=2186"><img src="images/long-arrow.png"
+                                        alt=""></a></div>
+                        </div>
+                    </div> -->
+
+    </div>
+    </div>
+    <!-- <div class="viewmore-btn">
+        <a href="gallery.htm" class="btn">View More</a>
+    </div> -->
+    </div>
+
+
+    </div>
+    <div class="footer-holder">
+        <div class="container">
+            <ul class="footer-links">
+                <!-- <li><a href="/home.htm">Home</a></li>
+      <li><a href="/about.htm">ABOUT</a></li>
+      <li><a href="/mission.htm">MISSION</a></li>
+      <li><a href="/science.htm">SCIENCE</a></li>
+      <li><a href="/applications.htm">APPLICATIONS</a></li>
+      <li><a href="/data.htm">DATA</a></li>
+      <li><a href="/learn_thematic.htm">LEARN MORE</a></li>
+      <li><a href="/news.htm">NEWS</a></li>
+      <li><a href="/events.htm">EVENTS</a></li>
+      <li><a href="/gallery.htm">GALLERY</a></li>
+      <li><a href="/documents.htm">Documents</a></li> -->
+            </ul>
+            <div class="footer-cols">
+                <div class="footer-left">
+                    <ul class="privacy-links">
+                        <li><a href="acronyms.htm">ACRONYMS</a></li>
+                        <p></p>
+                        <p></p>
+                        
+                    </ul>
+                    <div class="powered-by">
+                        <p>The information that has been provided has been taken from NASA website </p>
+                        <a href="https://pace.oceansciences.org/home.htm">NASA</a></p>
+                       
+                           
+                    </div>
+                </div>
+                <!-- <div class="footer-right">
+                    <p><span>NASA Official:</span> <a href="https://science.gsfc.nasa.gov/sed/bio/jeremy.werdell">Jeremy
+                            Werdell</a></p>
+                    <p><span>Webmaster:</span> <a href="mailto:admin@odyseallc.com">Daren Casey</a></p>
+                    <p><span>Last updated:</span><span id="lastUpdated">xxx</span></p>
+                </div> -->
+            </div>
+        </div>
+    </div>
+
+    <script src="/js/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+    <script src="/html5lightbox/html5lightbox.js"></script>
+    <script type="text/javascript" src="/js/slick.min.js"></script>
+    <script src="/fresco/js/fresco.js"></script>
+    <script src="/js/aos.js"></script>
+    <script src="/js/custom.js"></script>
+
+    <script>  document.getElementById("lastUpdated").innerHTML = "Sep 25 2024 16:47";</script>
+    <script>
+        <!--
+        $(document).ready(function(){
+          $("#read1").on("hide.bs.collapse", function(){
+            $(".btnRead").html('Read More');
+          });
+          $("#read1").on("show.bs.collapse", function(){
+            $(".btnRead").html('Read Less');
+          });
+          $("#read2").on("hide.bs.collapse", function(){
+            $(".btnRead").html('Read More');
+          });
+          $("#read2").on("show.bs.collapse", function(){
+            $(".btnRead").html('Read Less');
+          });
+          $("#read3").on("hide.bs.collapse", function(){
+            $(".btnRead").html('Read More');
+          });
+          $("#read3").on("show.bs.collapse", function(){
+            $(".btnRead").html('Read Less');
+          });
+          $("#read4").on("hide.bs.collapse", function(){
+            $(".btnRead").html('Read More');
+          });
+          $("#read4").on("show.bs.collapse", function(){
+            $(".btnRead").html('Read Less');
+          });
+          $("#read5").on("hide.bs.collapse", function(){
+            $(".btnRead").html('Read More');
+          });
+          $("#read5").on("show.bs.collapse", function(){
+            $(".btnRead").html('Read Less');
+          });
+          $("#read6").on("hide.bs.collapse", function(){
+            $(".btnRead").html('Read More');
+          });
+          $("#read6").on("show.bs.collapse", function(){
+            $(".btnRead").html('Read Less');
+          });
+          
+          
+          $(".btn.btn-white.btnRead").on("click", function(){
+            //$(".collapse.show").removeAttr("style");
+          });
+        
+          
+          $(".topread1").on("click", function(){
+            if($(".collapse").hasClass("show"))
+            {
+                $(".collapse.show").removeClass("show");
+                $("#read1.collapse").addClass("show");
+            }
+          });
+          $(".topread2").on("click", function(){
+            if($(".collapse").hasClass("show"))
+            {
+            $(".collapse.show").removeClass("show");
+            $("#read2.collapse").addClass("show");
+            //$(".btnRead").html('Read More');
+            }
+          });
+        
+          $(".topread3").on("click", function(){
+            if($(".collapse").hasClass("show"))
+            {
+            $(".collapse.show").removeClass("show");
+            $("#read3.collapse").addClass("show");
+            //$(".btnRead").html('Read More');
+            }
+          });
+          $(".topread4").on("click", function(){
+            if($(".collapse").hasClass("show"))
+            {
+            $(".collapse.show").removeClass("show");
+            $("#read4.collapse").addClass("show");
+            //$(".btnRead").html('Read More');
+            }
+          });
+          $(".topread5").on("click", function(){
+            if($(".collapse").hasClass("show"))
+            {
+            $(".collapse.show").removeClass("show");
+            $("#read5.collapse").addClass("show");
+            //$(".btnRead").html('Read More');
+            }
+          });
+        
+          $(".topread6").on("click", function(){
+            if($(".collapse").hasClass("show"))
+            {
+            $(".collapse.show").removeClass("show");
+            $("#read6.collapse").addClass("show");
+            //$(".btnRead").html('Read More');
+            }
+          });
+        
+          
+        });
+        //-->
+
+        $(document).on('click', '[data-toggle="lightbox"]', function (event) {
+            event.preventDefault();
+            $(this).ekkoLightbox();
+        });
+        function resize() {
+            if ($(window).width() < 767) {
+                $('.search-form> .input-field').addClass('opened');
+            }
+        }
+
+        /* orbit dashboard widget */
+
+        var orbitUrl = "/getOrbitInfo.php";
+
+        loadOrbitInfo(orbitUrl);
+
+        var orb = setInterval(function () {
+            loadOrbitInfo(orbitUrl);
+        }, 60000);
+
+        function loadOrbitInfo(url, type) {
+            get = true;
+            owlReq = $.ajax({
+                type: "GET",
+                url: url,
+                dataType: "text",
+                success: function (result) {
+                    console.log(result);
+                    myObj = JSON.parse(result);
+                    var timm = myObj[0];
+
+
+                    //$("#orbitTm").html(timm);
+                    // $("#orbitLon").html(parseInt(myObj[3]));
+
+
+                    $("#orbitRev").html(myObj[1]);
+                    $("#orbitLat").html(Math.round(myObj[2]));
+                    $("#orbitLon").html(Math.round(myObj[3]));
+                    if (myObj[5] >= 0) {
+                        $("#orbitSun").html('<i class="fa fa-sun-o"></i>');
+                        $("#sun_sun").html("DAY");
+                    } else {
+                        $("#orbitSun").html('<i class="fa fa-moon-o"></i>');
+                        $("#sun_sun").html("NIGHT");
+                    }
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    console.log(xhr.status);
+                    console.log(thrownError);
+                    loadComplete = true;
+                }
+            });
+        };
+        // Add event listeners to each circle
+        document.querySelectorAll('.circle').forEach(circle => {
+            circle.addEventListener('click', function () {
+                // Hide all paragraphs
+                document.querySelectorAll('.info-text').forEach(p => {
+                    p.classList.remove('active');
+                });
+
+                // Show the corresponding paragraph based on the clicked circle
+                const infoKey = this.getAttribute('data-info');
+                const activeInfo = document.getElementById(`${infoKey}-info`);
+                activeInfo.classList.add('active');
+
+                // Update "Learn More" link if needed
+                const learnMoreButton = document.getElementById('learn-more');
+                learnMoreButton.href = `${infoKey}_info.html`; // Update the link based on the infoKey
+                learnMoreButton.style.display = 'inline-block'; // Show the button
+            });
+        });
+
+    </script>
+
+
+
+
+
+
+    <div id="myModal01" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">ORBIT NUMBER</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <p>Inclination is the angle of a satellite’s orbit in relation to earth’s equator. If a satellite
+                        orbits
+                        from the north pole to the south pole, its inclination is 90 degrees. PACE’s orbit is inclined
+                        about
+                        8.1° from Earth’s poles (i.e., has an inclination of 98.1°).<br></p>
+
+                    <p>The height of the orbit – or distance between the satellite and earth’s surface –determines how
+                        quickly the satellite moves around the earth. Located 676 km (420 mi) above Earth, PACE requires
+                        about 98.3 minutes to orbit our planet.<br></p>
+
+                    <p>This means it travels 44,321 km (27,540 mi) per orbit. To calculate how many kilometers PACE has
+                        traveled since launch, you multiply the <strong><i>Orbit Number</i></strong> by 44,321 km.</p>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+
+
+    <div id="myModal02" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title"> APPROXIMATE POSITION</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <p>The height of the PACE’s orbit, or distance between the satellite and Earth’s surface, determines
+                        how
+                        quickly the satellite moves around the earth. Located 676 km (420 mi) above Earth, PACE requires
+                        about 98.3 minutes to orbit the earth.<br></p>
+                    <p>
+                        PACE is moving fast! It travels about 451 km per minute (280 mi per minute), so we provide an
+                        <i>approximate</i> latitude and longitude each minute. This position corresponds to where the
+                        satellite is directly above Earth’s surface. Note that the PACE satellite is circling about 676
+                        km
+                        (420 mi) above earth’s surface.
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+
+
+
+    <div id="myModal03" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">SATELLITE LIGHTING</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <p>As the PACE satellite moves around our planet, it takes about 98.3 minutes to complete an orbit.
+                        During one half of the orbit, PACE views the daytime side of the Earth. At the north pole, it
+                        crosses over to the nighttime side of Earth. When PACE is in daylight, it collects data. During
+                        nighttime passes, PACE sometimes does special maneuvers such as lunar calibrations.<br></p>
+                    <p>
+                        As PACE orbits, the Earth turns underneath. Each orbit is over a region that is adjacent to the
+                        area
+                        seen in its previous orbit. </p>
+                    <p><img src="images/sun-synchronous.png" class="img-fluid" /></p>
+
+                    <p>PACE is in what’s known as a <strong><i>sun-synchronous orbit</i></strong>. This means that
+                        whenever
+                        and wherever PACE crosses the equator, the local solar time on the ground is always the same. A
+                        sun-synchronous orbit keeps the angle of sunlight on earth’s surface relatively constant,
+                        allowing
+                        scientists to collect the consistent information required to assess climate change.</p>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <div id="myModal_ifram" class="modal fade" role="dialog">
+        <div class="modal-dialog respp">
+            <div class="modal-content" style="background-color: #fff0; border: 0px; height:100%;">
+                <iframe src="https://eyes.nasa.gov/apps/earth/#/satellites/pace" height="100%" width="100%"></iframe>
+            </div>
+        </div>
+    </div>
