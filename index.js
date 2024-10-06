@@ -103,12 +103,16 @@ window.addEventListener('resize', function () {
 }, false);
 
 // Add event listener for quiz button
-document.getElementById('quizButton').addEventListener('click', function() {
-    window.location.href = 'quiz1.html';
+document.getElementById('paceButton').addEventListener('click', function() {
+    window.location.href = 'quiz.html';
 });
 
 // Add event listener for game button
 document.getElementById('gameButton').addEventListener('click', function() {
   window.location.href = 'game.html';
+});
+
+document.getElementById('classButton').addEventListener('click', function() {
+  window.location.href = 'class.html';
 });
 // https://discourse.threejs.org/t/earth-point-vertex-elevation/62689

@@ -91,10 +91,10 @@ p {
   position: relative;
 }
 .logo img {
-    padding-top: -12px;
-    max-width: 65px;
-    padding: 12px;
-    margin-top: -34px;
+  padding-top: -12px;
+  max-width: 17%;
+  padding: 12px;
+  margin-top: -34px;
 }
 /* .pace-logo img {
   max-width: 10%;
